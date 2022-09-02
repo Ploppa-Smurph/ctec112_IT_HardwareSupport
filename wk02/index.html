@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTEC-112 Wk 02 Hardware</title>
+</head>
+<body>
+    <h1>CTEC-112 Wk 02 Chapter 03: Hardware Part 01</h1>
+    <pre>
+        <h2>3.1 - Network Media</h2>
+        Coaxial cable-	Carries broadband internet signals.
+        Inner conductor-	Carries data signals in cables.
+        Insulator-	Surrounds inner cable conductor and keeps signal separated from the mesh conductor.
+        Braided mesh conductor-	Functions as a second physical channel and as a ground.
+        Sheath-	Encases a cable to protect it from external elements.
+        F type connector-	A coaxial cable specification used for CCTV video systems.
+        RG-6-	A coaxial cable specification used for cable TV, satellite TV, and broadband cable internet.
+        Unshielded twisted pair (UTP)- cable	A cable generally used for Ethernet cables and telephone wires.
+        Shielded twisted pair (STP)- cable	A cable that provides more EMI protection, but is more expensive than UTP cable.
+        Category 5e (Cat 5e) cable-	A cable that supports gigabit Ethernet.
+        Category 6 (Cat 6) cable-	A gigabit Ethernet cable with 10 Gbps speeds limited to cable length less than 55 meters.
+        Category 6a (Cat 6a) cable-	A gigabit Ethernet cable with 10 Gbps speeds limited to cable length less than 100 meters.
+        Category 7 (Cat 7) cable-	Has the strictest specifications for crosstalk and noise of the Cat cables.
+        RJ-11 connector-	A connector with 4 connectors, 2 pairs of wires, and a locking tab; used primarily for telephone wiring.
+        RJ-45 connector-	A connector with 8 connectors, 4 pairs of wires, and a locking tab; used for Ethernet networks.
+        Patch twisted pair cable-	Uses the same wire configuration on each connector end.
+        Crossover twisted pair cable-	Arrange wires in the first connector using T568A standard and the second connector the T568B standard.
+        Fiber optic cable-	Carries broadband internet signals.
+        Central core-	Carries the signal.
+        Cladding-	Maintains the signal in the center of the core.
+        Protective layer-	Prevents the cladding and central core from breaking.
+        Plastic sheath-	Encases everything and protects the cable.
+        Single mode cable-	Transfers data using a single light ray.
+        Multi-mode-	Transfers data using multiple light rays.
+        ST, SC, and LC connectors-	Straight tip, Subscriber connector, and Lucent connector--various fiber optic connector types.
+            <h3>3.1.1 Netowrk Cables</h3>
+            the network media is either 'Bound' or 'Unbound'. Bound media is contained in some sort of cable. 
+                <b>Coaxial</b> - solid wire inner conductor, pvc Insulator, braided mesh, plastic pvc sheath -- this is a standard makeup, but they can be different styles
+                    RG-59: is the general coaxial cable (used for tv)
+                    RG-6:  has higher quality signal, replaces to RG-59
+                        F-Type connector: is the standard coaxial connector end, screws onto the plate
+                        BNC connector: is used in old networks (that old plug from the office video monitor my dad gave me when I was young).
+                    Coaxial cable is resistant to EMI and Durable; but it is expensive to run over long areas and splitters cut signal strength in half.
+                <b>Twisted Pair</b> - most common for networking. 8 copper wires twisted into 4 pairs. reduces EMI Crosstalk since they are twisted together as a pair.
+                         UTP (Unshielded Twisted Pair) - cheap, but does not protect against external EMI
+                         STP (Shielded Twisted Pair) - each wire pair is wrapped in shielding to prevent EMI (Electro Magnetic Interferance)
+                     Cat-5 (100Mpbs, 100MHz); Cat-5e (1Gpbs, 100MHz) {gigabit ethernet} 
+                     Cat-6 (1 Gpbs, 250MHz); Cat-6a (10Gpbs, 500 MHz)
+                     Cat-7 (10 Gpbs, 600MHz) - Requires Shielded Twisted Pair
+                     Cat-8 (40 Gpbs, 2000 MHz) - requires Shielded Twisted Pair {alternate to Fiber Optic (still not as fast as Fiber Optic)}  
+                        RJ-45 - basic connector for twisted pair - clear plastic with clip (8 pins)
+                        RJ-11 - smaller than RJ-11 -- common Telephone cable connection (4 pins)
+                    Twisted Pair cable is cheap per foot and flexible; susceptible to EMI and they are not as secure
+                <b>Fiber Optic</b> - light pulses, not Electric Signal. Central Core with Cladding (cladding helps reproject light signal back to the central core), Protective Layer, surrounded by plastic sheath            
+                        SMF (Single-Mode Fiber): smaller core allows for longer cable lenght, extremely fast speeds
+                        MMF (Multi-Mode Fiber): larger internal core allows multiple data channels, must have a shorter cable or the signal difuses
+                    Fiber Optic is Immune to EMI, and can have the longest cable length; Fiber Optic is very expensive and the cable is inflexible and can break -- must have special training to install the connector.  
+                <b>Plenum Rated Cabling</b> - has fire shielding and can be run above dropped down ceilings and in crawl spaces
+            <h2>3.2 - Cables and Connectors</h2>
+                USB, SATA, SAS, IDE, Molex
+       
+        <h2>Video - Evolution of Motherboard Chipsets</h2>
+           video is not working
+       
+
+        <h2>3.3 Cases and Motherboards</h2>
+            <h3>3.3.1 Cases and Form Factor</h3>
+            <b>ATX / Standard ATX </b> 9.6" x 12" - back 6.25" x 1.75" -- .8" spacing between slots
+            <b>Micro ATX</b> 9.6" x 9.6" - only has 4 expansion slots instead of 7
+            <b>Extended ATX / EATX</b> up to 3" longer than standard. adds extra memory slots
+            <b>ITX</b>
+            <b>Mini ITX</b> 6.7" x 6.7" and only has 1 expansion slot -- mounting holes line up with ATX
+            <b>BTX</b> - made to replace ATX, has a different back panel setup -- will not see often
+            <b>NLX</b> - unique backpanel and riser card
+
+            <b>Cases</b> -- ATX Full tower 
+                            ATX Mid-Tower 
+                            Micro-ATX
+                            Micro ATX Slim 
+                            Mini ITX
+        <h3>3.3.2 Cases and Form Factor Facts</h3>    
+        <img src="https://cdn.testout.com/_version_7028/pcpro2022v7-en-us/en-us/resources/text/t_cases_pp7/mb-form-factors-01.png" style="width:500;height:500;">  
+        <h3>3.3.3 Motherboard Components</h3>
+            <b>CPU Socket</b>
+            <b>Memory Slots</b>
+            <b>ATX Power Connector</b>              
+            <b>CPU Power Connector</b>
+            <b>Case Fan Connector</b>
+            <b>CPU Fan Connector</b>
+            <b>Expansion Slots</b>
+            <b>Front Panel Connector - buttons and lights</b>
+            <b>SATA Connectors</b>
+            BIOS (Basic Input Output System) or UEFI (Unified Extensible Firmware Interface)
+            CMOS Battery
+            Motherboard's Chipset
+            IO connectors
+            Traces and Solder points -- connect the chips and connectors for communication 
+        <h3>3.3.4 Mobo Component Facts</h3>
+        <img src="https://cdn.testout.com/_version_7028/pcpro2022v7-en-us/en-us/resources/text/t_mb_fact_pp7/motherboard-diagram-01.png" style="width:500; height:500;"> 
+        <h3>3.3.5 Install a Motherboard</h3>
+            1. Install CPU and Memory first.    
+            2. Install I/O Shield
+            3. Mobo Standoffs -- mounting points -- line up the standoffs in same config as mobo
+            4. Mobo Screws - fine thread Screws
+            5. Connect ATX Power - 24pin connector - align the clip on the plug with the notch
+            6. Connect CPU Power - 4 or 8 pin CPU power
+            7. Connect Front Panel Connectors 
+            8. USB Headers - or single plug USB connectors 
+                may need to find VCC pin on some motherboards 
+        <h3>3.3.7 Install Mobo Facts</h3>
+            Repairing a motherboard is beyond the skill of most technicians. It is almost always cheaper and faster to purchase a new one than to replace the old one.
+               
+        1) Document the current CMOS settings when you replace an existing motherboard. You might need these settings to configure the new motherboard.
+        2) Install the CPU, heat sink, and memory before installing the motherboard in the case.
+        3) Insert the I/O shield into the case.
+        4) Fasten standoffs to the case. Be sure to match the hole pattern on the motherboard. The standoffs prevent the motherboard circuits from touching the system case.
+        5) Install the motherboard, securing it to the standoffs with insulated washers and screws.
+        6) Connect the power and accessory cables:
+        7) Connect the ATX power cable and the CPU power cable.
+        8) Connect the CPU fan power cable.
+        9) Connect case wires (e.g., power switch, reset switch, drive activity lights, and power lights).
+        10) Connect any case fan cables.
+        11) Connect drives to SATA connectors.
+        12) Install additional devices in expansion slots.
+        13) Connect wires for front/top panel ports (e.g., USB, audio, or eSATA).
+        14) Document the settings of the new motherboard.        
+        <h3>3.3.8 Install Motherboard Lab</h3>    
+        <h3>3.3.9 Quiz</h3>
+        <h2>3.4 Motherboard Troubleshooting</h2>
+         <h3>3.4.1 Motherboard Troubleshooting</h3>
+         Power Supply Issue -  Pin 8 on the PSU supplies power to the mother board. a bad psu can cause failure to power on, or reboot loops.
+         POST (Power On Self Test) Error Messages - beeps or screen error messages.  
+            POST card shows post readout to small screen
+         Overheating caused by poor airflow, being too hot in the room, dust buildup inside the unit
+         Temperature Monitoring -- many mobos have thermal shutdown feature.
+         Internal Device Failure -- replace devices that are failing, always check any device drivers first.
+         If you see or smell smoke then shutdown the unit immediately. usually too late to fix -- unlikely the components will work correctly again.
+
+
+        <h2>3.5 Memory</h2>
+        DDR-	Five generations of RAM synchronized with the system clock including DDR1 through DDR5. Each new generation doubles the data transfer rate.
+        DRAM-	A type of RAM that stores data using a single transistor for every bit of data.
+        SODIMM-	A smaller memory card with unique notch positions that is used in laptops and notebook computers.
+        SRAM-	A type of RAM that stores data using four transistors for every bit of data.
+        <h3>3.5.1 DRAM Types</h3>
+            <b>DDR (double data rate)</b>
+                -- DRAM is Dynamic Random Access Memory - process one command per clock cycle (64-bits of data = 1 Word)
+                DRAM will show up as a square wave on an oscilliscope
+                DDRAM doubles the data processed per clock cycle - DDRAM Double Pumps (it reads the data on the up and downside of its clock cycle, doubling it's speed)
+            <b>MTS / DDR Rating</b> = Mega Transfers / Second  
+            <b>MHz</b> = base bus speed of the RAM
+              the MTS (DDR Rating) is the base bus of the RAM doubled  [ex: DDR266 has a bus speed of 133MHz] 
+            <b>PC Rating</b> = Data processing speed in Mbps.
+                  RAM data is processed in 64-bit(8-byte) words, so to calculate the PC Rating you multiply the DDR rating by 8
+                    [ex: DDR-266 = 133MHz and is PC-2100 (2128 rounded up or down for marketing purposes) ]
+                DDR -- 180 pins
+                DDR2 -- 240 pins, notch is closer to the middle
+                DDR3 - 240 pins, notch is to the left of DDR2
+                DDR4 - up to 64GB, 288 pins, notch is in the center
+                DDR5 - increased efficiency and lower latency, up to 64GB, notch to the left, 288 pins
+            <b>DIMM</b> - any variation of DDR 
+            <b>SO-DIMM</b> - used in laptops
+            <b>UniDIMM</b> - can have DDR3 or DDR4 in the same slots
+
+            <b>Multi-Channel Memory</b> - only a 5%-15% increase - specific to motherboard, Mobo has multiple memory processors for RAM
+
+            <b>ECC Memory</b> - data correcting, used by banks and financial institutions, not in average PC
+        <h3>3.5.3 Multi-Channel Memory Architecture Facts</h3>
+            
+              Memory 	Bus Frequency	DDR Rating (MT/s)	PC Rating (in MB)	Voltage
+                DDR	    133 – 200 MHz	     266 – 400 MT/s	     PC2100 – PC3200	2.5 volts
+                DDR2	266 – 400 MHz	     533 – 800 MT/s	     PC4200 – PC6400	1.8 volts
+                DDR3	533 – 800 MHz	    1066 – 1600 MT/s	 PC8500 - PC14900	1.5 volts
+                DDR4	1066 – 1600 MHz	    2133 – 3200 MT/s	PC12800 – PC25600	1.2 volts
+                DDR5	2133 – 3200 MHz	    3200 – 6400 MT/s	PC38400 – PC51200	1.1 volts
+        <h2>3.6 Memory Installation</h2>
+            Buffered memory-	A space in memory that holds memory addresses or data before it is transferred to the memory controller. It is also called registered memory.
+            Capacity-	A term that refers to the storage capacity of the memory module.
+            Error correcting code-	A type of memory that detects and corrects common internal data corruption. It is also called parity memory.
+            Frequency-	Memory frequency (called speed) should be supported by the system bus/memory controller.
+        <h3>3.6.1 Memory Characteristics</h3>
+        1) Determine type of memory supported by Motherboard (check documentation or online support) -- good source is Crucial.com's Memory Scanner tool
+        2) Check the exisiting RAM module - check notch and pin density
+        3) Determine DDR memory to use [ex: DDR2, DDR3]
+        4) Determine Maximum amount of memory -- 32bit board only supports 4GB; Windows Server systems can use PAE (Physical Memory) to extend the memory allowed on a 32bit system.
+                64-bit systems can theoretically have 16 Exobytes of memory. Now 1-2TB is the most you will most likely see - 16GB+ of memory in home PCs
+        5) Verify that the memory speed is supported by the mobo. 
+        6) Does the mobo require ECC Memory (Error Correcting)? usually in high end servers -- has an extra chip on the memory stick that checks for errors (normally 9 chips on the stick vs 8 chips on normal memory)
+                ECC memory will reduce the performance of a system by 2%
+        7) Registered Memory / Buffered Memory - used in high end systems not the same, but still used interchangebly -- has an extra chip in the middle of memory stick, the extra chip serves as a buffer.
+                    registered memory is much more expensive than normal memory.
+        8) Column Address Strobe Latency (CL) - specifies response time delay, measured in clock cycles -- LOWER THE BETTER
+        9) Timing Parameters - Four Parameters in clock cycles [ex: 5-5-515]
+                    - CL: CAS Latency is 1st 5
+                    - tRCD: Row to Column Address is the 2nd (determines how many cycles it takes to open and access a row of memory)              
+                    - tRP: Row Precharge Time (cycles from issuing of the command to opening of the next row)
+                    - tRAS: Row Active Time (amount of clock cycles from the tRCD to the issuing of the tRP )
+        10) Serial Presence Detect (SPD) - stored on an EEPROM (Electrically Erasable Programmable Read Only Memory) - located on the SDRAM module
+                contains the Module size, Data width, Speed, Voltage -- can overclock and underclock the SPD           
+        <h3>3.6.4 Select Correct Memory Module</h3>
+                go to control panel -> System -> shows the ram that is currently installed. 
+                
+            <b>WMIC</b> -- start elevated command prompt (run as admin) and:
+                    >wmic baseboard get product,manufacturer,version
+
+            <b>Speccy</b> - 3rd party software that determines specs
+            <b>Memory Configurator</b> - Crucial Advisor Tool (or similar tool), Crucial System Scanner analyzes the system and tells you the options for upgrades
+        <h3>3.6.5 Install Memory</h3> 
+    <h2>3.7 Memory Troubleshooting</h2>   
+        <h3>3.7.1</h3>
+            Software or Hardware errors
+        <h3>3.7.2 Test Memory</h3>
+            use a hardware or software memory test. in this example we use memtest86 software from memtest86.com
+
+            boot from the 'memtest86' usb tool drive.
+
+    </pre>
+    
+</body>
+</html>

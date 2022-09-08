@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTEC-112 wk03 Ch03 Hardware part 02</title>
+</head>
+<body>
+    <h1>CTEC-112 week 03 Ch03 Hardware part 02</h1>
+    <pre>
+    <h2>3.8 BIOS / UEFI</h2>
+    Unified Extensible Firmware Interface:	A software interface between the operating system and platform firmware. UEFI will eventually replace BIOS.
+    Basic Input Output System:	Firmware that controls input and output operations.
+    Electrically erasable programmable read-only memory(EEPROM):	A RAM chip that replaced the CMOS chip.
+    Complementary metal-oxide semiconductor:	A technology for constructing integrated circuits.
+    <h3>3.8.1 BIOS / UEFI</h3>
+    UEFI - Unified Extensible Firmware Interface - replaced BIOS, faster starter, 64bit
+    BIOS - generic term -- now UEFI, the program that tells the CPU how to communicate with RAM and Storage. Basic Input Output Service the BIOS is the software on the ROM chip 
+    CMOS - re-writable, Complementary Metal Oxide Semiconductor, gives config parameters to BIOS
+    EEPROM - replaced CMOS (Read Only Memory -- Persistant Data).
+        Devices: 
+        Non-Configurable Devices - parameters will not change, keyboard, system speaker (built-in)
+        Configurable Devices- 
+        Custom Devices - Sound cards, NIC, Video Cards
+            option rom vs device driver (the driver is software that lets the pc know how to access the device)
+    <h3>3.8.2 PC Boot Process</h3>
+        Power to CPU -> Load UEFI / BIOS -> Run POST (Power On Self Test) ->
+            Identifies System Devices (Plug N Play Devices) -> Identify Boot Drive -> Control is passed to the OS
+
+            One of the main jobs of the BIOS/UEFI is to help start the system. The following process occurs when you turn on a computer:
+
+            1)Power is supplied to the processor. The processor is hard-coded to look at a special memory address for the code to execute.
+            2)This memory address contains a pointer or jump program that instructs the processor where to find the BIOS program.
+            3)The processor loads the BIOS program. The first BIOS process to run is the power-on self-test (POST) process. POST does the following:
+                a)Verifies the integrity of the BIOS/UEFI code.
+                b)Looks for the BIOS on the video card and loads it. This powers the video card and results in information displayed on the monitor.
+                c)Looks for BIOS programs on other devices (such as hard disk controllers) and loads those.
+                d)Tests system devices, such as verifying the amount of memory on the system.
+            4)After POST tests complete, the BIOS identifies other system devices. It uses CMOS settings and information supplied by the devices themselves to identify and configure hardware devices. It allocates system resources to plug-and-play devices.
+            5)The BIOS searches for a boot drive using the boot order specified in the CMOS.
+            6)On the boot device, the BIOS/UEFI searches for the master bootloader and loads the bootloader program. At this point, the BIOS/UEFI stops controlling the system and passes control to the bootloader program.
+            7)The bootloader program is configured to locate and load the operating system.
+            8)As the operating system loads, steps are taken to load all additional programs and configure devices for use by the operating system.
+            
+            From time to time, a PC manufacturer may release updates to the BIOS firmware. To update the BIOS, you download the update along with a utility provided by the PC manufacturer. You flash the BIOS to rewrite data stored in the BIOS chip. The steps you follow to flash the BIOS will vary by manufacturer.    
+    <h3>3.8.3 BIOS/UEFI Facts</h3>
+    UEFI:	The UEFI was designed to replace the BIOS. Important facts about UEFI include:
+                -The UEFI is firmware.
+                -The UEFI program controls the startup process; it also loads the operating system into memory.
+                -The UEFI design improves the software interoperability and the address limitations of BIOS.
+                -The UEFI provides better security to protect against bootkits (malware attacks on the boot process).
+                -The UEFI provides faster startup times.
+                -The UEFI supports drives larger than 2.2 terabytes.
+                -The UEFI supports 64-bit firmware device drivers.
+                -The UEFI is compatible with both BIOS and UEFI hardware.
+                -You should frequently check for UEFI updates from the manufacturer. Flashing is the process of updating the UEFI. Flashing makes new features available.
+    
+    BIOS:	The BIOS is a legacy program stored in a read-only memory (ROM) chip that the CPU automatically loads and executes when it receives power. Important things to know about the BIOS are:
+                -The BIOS program controls the startup process and loads the operating system into memory.
+                -The BIOS is firmware.
+                -You should frequently check for BIOS updates from the manufacturer. Updating the BIOS (called flashing the BIOS) makes new features available, such as allowing the BIOS to recognize newer hardware devices.
+                -Most BIOS chips vary from 265 KB to 1 MB in size.
+                -Video cards include a BIOS chip on the device. These devices have their own ROM chip called an option ROM (OpROM).
+    
+    EEPROM:	The EEPROM is a RAM chip that replaced the CMOS chip. Important things about EEPROM are:
+                -EEPROM is a type of non-volatile memory used in computers and other electronic devices to store relatively small amounts of data.
+                -EEPROM allows individual bytes to be erased and reprogrammed.
+                -EEPROM replaced EPROM chips and is used for computer BIOS built after 1994.
+                -EEPROM chips allow you to update the BIOS/UEFI in a computer without opening the computer and removing any chips.
+    
+    CMOS:	CMOS is legacy computer chip technology that has become a general term used for the program that stores important system information related to starting a computer. It is often used synonymously with BIOS.
+        
+        Data held in CMOS includes the hard disk type and configuration; the order of boot devices; and other configurable settings related to the system hardware. Important facts about CMOS include:
+                -To change the data stored in CMOS, you use a CMOS editor program that is part of the BIOS.
+                -CMOS used to refer to the real-time clock and the CMOS chip that stored system information. Both were powered by a CMOS battery. Now, the EEPROM chip stores the system information that was on the CMOS chip. EEPROM requires no power to maintain data storage.
+                -The CMOS battery is still used to keep the real-time system clock running when the computer is powered off. It can be a low-voltage dry cell, lithium mounted on the motherboard, or even AA batteries in a housing clipped on a wall inside of the case. The electric current is about 1 millionth of an amp and can provide effective power for years.
+                -During the computer's startup procedure, you can press one or more keys to open a CMOS editor to change the data stored in CMOS memory. This CMOS setup program is part of the BIOS program. The key or keys you press to open the CMOS editor depend on the BIOS manufacturer. The easiest way to find out which key to press is to read the screen as it boots or to consult the motherboard documentation. The most common keys are Delete, Insert, F1, and F2.
+    <h3>3.8.4 Edit BIOS/UEFI Settings</h3>
+        video -- press F2, F8, F12, ESC or whatever your mobo requires at startup
+            SMART reporting (self monitoring analysis and reporting technology) -- monitors HDD
+            USB configuration -- can enable boot support and enable usb 3.0 
+            Secure Boot --
+            Multi-Core Support -- 
+            HyperThreading
+            Extend BIOS POST Time -- display the appropriate BIOS key screen for longer
+            Virtualization Support -- lets you run VM
+    <h3>3.8.5 Built-in System Diagnostics</h3>        
+        shows how to use the online diagnostic tool -- 
+    <h3>3.8.6 Flash the BIOS</h3>    
+            can brick your system
+    <h3>3.8.8 BIOS/UEFI Security</h3>    
+        Protect system with password -- user or admin password
+          used to be able to clear the password by manipulating the clr_cmos jumper
+        Drive Locking -- locks the HDD
+        TPM - Trusted Process Module
+        LoJack -- protect systems that are prone to being stolen (like laptops)
+                -reports current location & verifies if stolen
+        UEFI Security include additional security: 
+            -- digitally signed updates           
+            -- SecureBoot - helps prevent 'rootkits'
+    <h3>3.8.9 & 3.8.10 UEFI / BIOS Lab</h3>        
+        press F2 - set admin password
+                    - set HDD password
+                    - enable Chassis Intrusion - 
+                    - set TPM Trusted Process Module software - TPM creates Security Certificates
+    <h2>3.9 Processors</h2>
+    Multi-core-	A processor that has multiple processors within a single processor package.
+    Throttling-	The process of modifying the operating characteristics of a processor based on current conditions.
+    Overclocking-	A process that pushes a CPU beyond its designed specifications.
+    Virtualization-	The ability to install and run multiple operating systems simultaneously on a single physical machine.
+    <h3>3.9.1 Processor Concepts</h3>
+        Intigrated Circuit - contains Logic Gates
+          accepts and performs instructions -- allows processor to complete tasks
+        CPU is the Brains of the computer - connected via the CPU socket
+            clock speed - faster is better
+        Overclocking - increases speed of the clock theroetically provides more performance
+                increased temp from overclocking can shorten the lifespan of the device
+        CPU Cache Memory - SRAM chips 
+        Multi-Core Processors - executes more than 1 process at a time
+        Multithreading - single cores can perform multiple process 
+        Hyper-Threading - Intel tech - increases 20% performance
+        GPU - Graphics Processor 
+        Virtualization - 
+        Cooling - always have a CPU cooler 
+            Heatsink - passive Cooling
+            Thermal Paste - passive cooling
+            Fan - blows air over the heatsink to remove heat - active cooling
+            Heat Pipe - has liquid inside -- more efficient -- active Cooling
+            Radiator - coolant, fan, pump and radiator - active cooling 
+    <h3>3.9.2 CPU Facts</h3>           
+        Throttling- is the process of modifying the operating characteristics of a processor based on current conditions.
+                Throttling is often used in mobile processors to change the operating frequency to minimize power consumption and heat output.
+                Throttling can also be used in low memory conditions to slow down the processing of I/O memory requests, processing one sequence at a time in the order the request was received.
+                    Related to throttling, processors or the operating system can shut down unused cores in multi-core systems to conserve energy.
+        
+        32-bit or 64-bit- A 32-bit processor can process 32-bits of information at a time; a 64-bit processor can process 64-bits of information.
+            - The biggest advantage of 64-bit processors over 32-bit processors is in the amount of memory they can use. 32-bit processors have a limit of 4GB. 64-bit processors have a theoretical limit of 16 EB (although operating system and current hardware limitations impose a much lower practical limit).
+            - The operating system and applications must be written for 64-bit CPUs to take full advantage of 64-bit processing.
+            - The processor instruction set identifies all instructions (operations) that a processor can perform.
+                -32-bit processors use the IA-32 instruction set (also referred to as x86).
+                -Itanium processors from Intel use the IA-64 instruction set.
+                -AMD64 and Intel 64 processors use the x86-64 instruction set (also referred to as x64).
+            32-bit applications can run on 64-bit processors using the following methods:
+                -Itanium processors use a software layer to translate between IA-32 and IA-64.
+                -x64 processors execute both 32-bit and 64-bit instructions in the hardware.
+                -A 32-bit operating system can run on a computer with a 64-bit processor.
+            Applications typically perform better on 64-bit systems.
+                -64-bit applications typically perform better than 32-bit applications.
+                -In some cases, 32-bit applications might perform better on 64-bit systems.            
+    <h3>3.9.3 CPU Performance Facts</h3>            
+    Clock Time:
+            Clock time (CT) is the period of the clock that synchronizes the circuits in a processor. Circuit technology and the complexity of the work done in a single clock affect clock time. For a long time, processor clock speed was used as a measure of processor performance. This is not necessarily true for newer processors for the following reasons:
+                    -If two processors are of the same type, higher speed typically means higher performance. With processors of different types, speeds might not be comparable.
+                    -It is important to make sure the motherboard can support the speed of the processor.
+                    -Many processors use a performance rating, instead of speed. A higher number indicates a better-performing processor. However, performance ratings are typically applicable only between models of the same manufacturer.
+    
+    Overclocking:
+            Overclocking is a technique that causes the processor to operate at a higher speed. Overclocking is typically performed by those who want to get the maximum performance from their systems. Important things to know about overclocking are:
+                    -Overclocking can cause system instability, component damage, and can void the warranty.
+                    -Motherboard bus, processor, and memory settings should be adjusted to match the overclock speed.
+                    -Overclocking may require more voltage.
+                    -Overclocking increases heat output. It may be necessary to upgrade the cooling devices.
+    
+    Benchmark Score Comparison
+                    -By running a benchmark test on a PC, you can learn how fast the processor, graphics card, storage drives, and memory are. This is useful in highlighting whether there is a performance issue with a PC's hardware. A benchmark allows you to quickly evaluate the PC, identify hardware problems, and explore possible upgrades. Running before and after benchmark tests can help you measure the effect of configuration changes and hardware upgrades.
+    <h3>3.9.4 CPU Socket Facts</h3>  
+    <h3>3.9.5 CPU Install</h3>
+            1)static mat and wrist EMD strap
+            2)make certain that the CPU and mobo are compatible
+            3)thermal paste           
+            4)install the cooler before turning on the computer   
+            5)lift up the lever to install the CPU socket -- CPUs are keyed -- look for the small golden triangle (pin 1 orientation)
+            6)close the lever after CPU is installed
+            7)install the pad or paste - then place the cooler on the CPU
+            8)get the fan setup (connect power to cpu fan)
+            9)install RAM
+            10)verify the CPU is shown in UEFI
+    <h3>3.9.6 CPU Install Facts</h3>  
+    <h2>3.10 Processor Troubleshooting</h2>
+    Basic input/output system(BIOS):  The firmware that provides runtime services for operating systems and programs. It also performs hardware initialization during the boot process.
+    Unified Extensible Firmware Interface(UEFI):  A publicly available specification that defines a software interface between an operating system and platform firmware.
+    Central processing unit(CPU):  The electronic circuitry that executes instructions comprising a computer program. The CPU performs basic arithmetic, logic, control, and input/output operations specified by the instructions in the program.
+    <h3>3.10.1 Processor Troubleshooting</h3>
+        ESD (electrostatic discharge) - use a static mat and use a wrist strap
+     Make certain to update to a current BIOS / Firmware
+            overclocking can cause instability, can produce excess heat, can cause CPU failure
+    Installation Issues: 
+            check that CPU and MoBo are compatible
+            ensure pin1 orientation
+            make certain the CPU is seated correctly
+    install heatsink and fan on the CPU before powering on -- monitor CPU temp when it is working 
+      make certain all fans are working 
+    may need additional fans 
+       -- push air in from the front and pull out from the back ---   --<--Back <-- Fan CPU <-- Fan Front-<--  
+    <h3>3.10.2</h3>
+Symptoms of a failed or failing CPU include:
+
+    -System will not boot.
+    -System boots, but the operating system fails to load.
+    -System has power-on self-test (POST) parity problems with a number of devices.
+    -System locks up shortly after startup.
+            -This symptom is a possibly thermal issue. You can check for a thermal issue by shutting down the system, letting the system cool off, and restarting the computer. If the problem repeats:
+                -Check the heat sink and fan for placement and condition.
+                -Verify that thermal paste or a thermal pad has been used between the processor and the heat sink.
+                -Ensure the heat sink is firmly attached to the CPU.
+                -Verify that the CPU is properly seated in its socket.
+                -Make sure the system case fans are working and that the case and expansion slots are in place.
+            -If the computer has this symptom but is not overheating, the problem could be an incorrectly set clock or system timers in the BIOS/UEFI.
+    -System sounds a POST beep code indicating a CPU fault upon boot.
+            -You should verify that the CPU is receiving sufficient power by checking the power outputs.
+            -If these are good, replace the CPU.
+            -If the fault remains, the problem is with the motherboard.
+    -System crashes on startup or when running a software application or a certain group of applications.
+            -You should run repetitive tests using diagnostic software.
+            -If the symptoms remain after replacing a seemingly faulty CPU, run similar tests on the motherboard and chipset.
+            -You should also check for a corrupt file in the software.
+    -System sounds a POST beep code indicating a CPU fault upon boot.
+            -You should verify that the CPU is receiving sufficient power by checking the power outputs.
+            -If these are good, replace the CPU.
+            -If the fault remains, the problem is with the motherboard.
+    -System crashes on startup or when running a software application or a certain group of applications.
+            -You should run repetitive tests using diagnostic software.
+            -If the symptoms remain after replacing a seemingly faulty CPU, run similar tests on the motherboard and chipset.
+            -You should also check for a corrupt file in the software.
+    <h2>3.11 Video and Expansion Cards</h2>
+    Peripheral Component Interconnect-	A connection slot for a 32-bit computer bus. PCI was developed to replace the obsolete Industry Standard Architecture (ISA) and Video Electronic Standards Association (VESA) bus standards.
+    PCI Extended(PCI-X)-	A PCI design that overcomes PCI bandwidth limitations.
+    PCI Express-	The connector that replaced PCI, PCI-X and AGP.
+    Mini PCI-	A subset of the PCI interface, but with a small form factor.
+    Legacy bus-	Buses that have been replaced by newer types are considered legacy buses.
+    Multi-GPU-	The ability to link video cards together. This allows you to share the graphic processing load between the two GPUs.
+    DirectX/(Open Graphics Library (openGL)-	A collection of application program interfaces (APIs) that improves graphic, animation, and multimedia creations.
+    High-Bandwidth Digital Content Protection-	A digital copy form designed to protect digital media from piracy.
+    <h3>3.11.1 Expansion Buses and Slots</h3>
+         PCI - keyed - notch towards the back of the card, older tech, still found in PC 
+         PCI-X - PCI extended -- older tech, found in server system  
+        PCIe x1 - newer tech, like a mini PCI tab -- keyed, used by NIC and Sound Cards
+        PCIe x16 - longer - has a keyed tab towards the front, also has a hook at the back of the card, used by video cards
+    <h3>3.11.2 Expansion Bus Types</h3>          
+    PCIe uses several connection types.
+        -PCIe types are defined by the number of transmission lanes that are used to transfer data.
+        -PCIe defines x2, x4, x8, x16, and x32 connection types. For example:
+                -PCIe x1 provides one lane for transmission (x1).
+                -PCIe x16 provides sixteen lanes for transmission.
+        -PCIe data rates depend on the protocol version and number of transmission lanes:
+            -1.0: 250 MBps (x1); 4 GBps (x16)
+            -2.0: 500 MBps (x1); 8 GBps (x16)
+            -3.0: 1 GBps (x1); 16 GBps (x16)
+            -4.0: 2 GBps (x1); 32 GBps (x16)
+        -In addition to greatly increased speed, PCIe offers higher quality service.
+        -PCIe can run alongside legacy PCI technology (e.g., both PCIe and PCI buses can be in the same system).
+        -PCIe x1 slots are typically used for network cards, USB cards, and sound cards. PCIe x16 slots are primarily used for dedicated video cards.
+    <h3>3.11.3 Install an Expansion Card</h3>    
+            -proper ESD protection
+             keep your parts in anti-static bags -- keep the case slot cover and screw, you will screw the new card in and may need the slot cover later.
+            -seat the card all the way and rescrew the card back into place with the case's set screw that you saved from the slot. 
+    <h3>3.11.5 Video Cards</h3>        
+        responsible for video output
+            characteristics to be aware of:
+            GPU - have heatsinks and fans because they get hot
+            Video Memory - memory for the video card
+        Integrated Graphics - fine for office work, nothing video intensive -- shares MoBo memory
+        Dedicated Video Cards - GDDR3, 4, or 5 - used for graphic applications, 3D rendering, gaming
+         Direct X, OpenGL, Vulkan
+        Bus Type (PCIe x16, PCI, etc.)
+        Multi-GPU support (SLI - NVIDIA or CrossFire - AMD)
+    <h3>3.11.6 Video Card Facts</h3>
+    <h3>3.11.7 Install a Video Card</h3>    
+            you plug that card into the expansion slot.
+    <h3>3.11.8 Configure Capture Card</h3>        
+            using OBS (Open Broadcaster Software) - 
+                configure OBS software - settings -     
+    <h2>3.12 Audio</h2>
+        Sound card-	An expansion card that manages sound input and output.
+        Sampling rate-	The number of analog signal samples taken over a period of time.
+        Analog output-	An output that allows sound to be played through external devices.
+        Analog input-	An input that allows audio to be recorded through the sound card.
+    <h3>3.12.1 Digital Audio</h3>
+        soundcard converts Audio to digital 
+                Amplitude - distance from lowest point to highest point
+                Frequency - distance traveled in 1 second
+        Sample - identifies amplitude and frequency at a given time 
+         accuracy of the sample is known as 'Fidelity'
+        Bits per Sample (BPS) - higher the number better the fidelity (16bps has over 65,536 possible values)
+        Sampling Rate - # of samples / second -- 8000Hz is a low sample rate
+           CD quality = 16-bit @ 44kHz 
+           High End = 24bit @ 192 kHz
+        better sound fidelity = larger file size
+        Audio Compression - retain as much fidelity while reducing file size
+                MP3 (MPEG-2 Audio Layer III) is most common compression type - 9% of the original size; lossy compression algorithm
+                WMA
+                DolbyDigital
+                AAC    
+    <h3>3.12.2 Sound Cards</h3>                
+        input and output ports - i/o jacks (analog) - line in, speaker out, microphone
+        S/PDIF ports (digital) - Digital Optical Out, Digital Coax Out
+        # of Channels supported by soundcard - 2 channel is stereo
+        5.1 = standard surround - LFE (subwoofer)
+        7.1 = 
+        Software vs Hardware decoding 
+            hardware decoding = dolby digital and dts-es
+        3-D audio - EAX
+    <h3>3.12.4 Manage Audio Devices</h3>         
+        use device manager - right-click on start icon and choose device manger
+        CoDec = Compressor / Decompressor 
+    <h3>3.12.6 Sound Card Connectors</h3>
+        TRS - mini Tip Ring Sleeve
+        TOSLINK (Toshiba Link) - optical auido comparable
+        RCA cable
+        IEEE 1394 (FireWire) - 
+        HDMI
+    <h3>3.12.7 Lab Select and Install Sound Card</h3>    
+    <h2>3.13 Cooling</h2>
+    Case fan-	A fan that creates a pressurized system that allows air to flow through the computer case in a specific way.
+    Heat sink-	A hardware component made of heat conductive material.
+    Liquid cooling-	An additional cooling agent used when air cooling is not enough.
+    <h3>3.13.1 System Cooling</h3>
+        proper ventilation and cooling is important
+                must utilize the proper 1 way air-flow to move across all components
+    <h3>3.13.2 Cooling Facts</h3>         
+        <img src="https://cdn.testout.com/_version_7028/pcpro2022v7-en-us/en-us/resources/text/t_cooling_pp7/cooling-case.png" style="width:350;height:400;">
+    <h2>3.14 Power Supplies</h2>  
+    <h3>3.14.1 Power Supplies</h3>
+        converts to 12v, 5v, and 3.3v
+          measured in 100s of Watts
+        best to invest in more powerful systems
+        the psu aids in thermal management
+    <h3>3.14.2 Power Supply Facts</h3>      
+    -ATX power supplies provide soft power. This means even when the computer is turned off, the motherboard has power. Soft power allows the computer to be turned on and off by the operating system or over the network.
+        PSU connectors: 
+            20+4 ATX connector = supplies power to MoBo
+            4-pin 12v Pentium 4: adds additional power to CPUs underpowered by 20+4 connector
+            8-pin Entry-Level Power 12v: used on more modern systems that need even more power for the CPU
+            6+2-pin PCIe: power for newer video cards, provides up to 150watts, aka PEG6+2
+            4-pin peripheral: called 4 pin Molex, used by legacy components
+            SATA power: powers SATA devices - 3.3, 5, or 12v
+            4-pin mini-Molex: used for floppy drives
+            Troubleshooting Power Supplies
+
+    Following are tips for troubleshooting power supplies.
+            
+        Familiarize yourself with the symptoms of a bad power supply.
+            -The computer does not turn on.
+            -The computer sporadically shuts off or reboots.
+            -A broken or noisy fan.
+        Rule out the obvious before opening the computer. Make sure:
+            -The power cord is plugged into the wall.
+            -The power switch is in the on position.
+            -The voltage switch is set to the correct voltage.
+        Test the power supply using a multimeter or power supply tester. Voltage levels should be within +/- 5% of normal. If they aren't, the power supply is bad or failing and you should replace it.
+            -12 V rail should be between 11.4 and 12.6 volts.
+            -5 V rail should be between 4.7 and 5.25 volts.
+            -3.3 V rail should be between 3.1 and 3.4 volts.
+        Take proper safety precautions. Power supplies carry dangerous levels of electrical current. You should:
+            -Never ground yourself when working on a power supply.
+            -Never open or disassemble a power supply. Always replace the entire unit.        
+    <h3>3.14.3 Identify Power Supply Components</h3>        
+        ATX psu: 
+        MicroATX:
+        Mini-ITX:
+        soft power: software can turn cpu on and off
+    <h3>3.14.4 Change Power Supply</h3>    
+        Power Good Signal - 5v can cause computer to turn off or reboot.
+          check with multi-meter:  take a paripheral connector (4-pin Molex) - Red(5v), ground, ground, Yellow(12v) 
+              put lead in ground first, then 12v check and see the outpu
+    <h2>Extra: Volts, Amps, and Watts Explained</h2>
+</pre>
+</body>
+</html>

@@ -56,12 +56,112 @@
     RAID-	A disk sub-system that combines multiple physical disks into a single logical storage unit.
     Just a Bunch of Disks(JBOD)-	A configuration that places multiple disks in a single logical storage unit.
     <h3>5.4.1 RAID</h3>
+    Redundant Array of Independent Disk - creates data redundency
+     Hardware RAID- must have a RAID controller - has a processor for processing RAID Arrays
+     Software RAID- slower, but works well on modern computers
+    RAID 0 = Disk Striping -- OS sees the 2 drives as 1 drive; if 1 fails then the RAID fails
+    RAID 1 = Disk Mirroring -- provides redundancy -- 2 drives have the same info on both drives, like with striping OS sees both disk as 1
+    RAID 1 = Disk Duplexing -- 2 RAID Controllers necessary -- provides Redundancy and Fault Tollerance
+    RAID 5 = Striping with Parity -- requires 3 or more drives, best to be same size and speed for 'Striping with Parity'. creates a 'parity drive' that stores data in case of corruption
+                the Parity drive ends up taking up the equivilant of 1 drive, so if you have 5 5Tb drives in a Striping with Parity RAID, then you essentialy have 20Tb logical storage.
+    RAID 6 = becoming more popular, support for multiple faults in the RAID
+    RAID 10 = RAID 1 + RAID 0 = Mirror Striping - minimum of 4 disk, redundancy, High Performance, best for I/O intense applications. 
+    <h3>5.4.2 RAID Facts</h3>
+    RAID 0 (striping)=	A stripe set breaks data into units and stores the units across a series of disks by reading and writing to all disks simultaneously. Striping:
+                -Provides an increase in performance.
+                -Does not provide fault tolerance. A failure of one disk in the set means all data is lost.
+                -Requires a minimum of two disks.
+                -Has no overhead because all disk space is available for storing data.
+    RAID 1 (mirroring)=	A mirrored volume stores data to two (or more) duplicate disks simultaneously. If one disk fails, data is present on another disk. The system switches immediately from the failed disk to a functioning disk. Mirroring:
+                -Provides fault tolerance for a single disk failure.
+                -Does not increase performance.
+                -Requires a minimum of two disks.
+                -Has overhead. Overhead is 1 / n where n is the number of disks. If data is written twice, half of the disk space is used to store the second copy of the data.
+        RAID 1 is the most expensive fault tolerant system.
+    RAID 5 (striping with distributed parity)=	A RAID 5 volume combines disk striping across multiple disks with parity for data redundancy. Parity information is stored on each disk. If a single disk fails, its data can be recovered using the parity information stored on the remaining disks. Striping with distributed parity:
+                -Provides fault tolerance for a single disk failure.
+                -Provides an increase in performance for read operations. Write operations are slower with RAID 5 than with other RAID configurations because of the time required to compute and write the parity information.
+                -Requires a minimum of three disks.
+                -Has an overhead of one disk in the set for parity information (1 / n).
+                -A set with 3 disks has 33% overhead.
+                -A set with 4 disks has 25% overhead.
+                -A set with 5 disks has 20% overhead.
+    RAID 10 (stripe of mirrors)=	A RAID 10 volume stripes data across mirrored pairs and across multiple disks for data redundancy. If a single disk fails, its data can be recovered using the mirrored information stored on the remaining disks. If two disks in the same mirrored pair fail, all data will be lost because there is no redundancy in the striped sets.
+                -Provides fault tolerance for a single disk failure.
+                -Provides redundancy and performance.
+                -Uses 50% of the total raw capacity of the drives due to mirroring.
+                -Requires a minimum of four disks.    
+    
+    JOBD Disk Arrays -stands for just a bunch of disks. JBOD is not a RAID configuration, but like RAID, configures multiple disks into a single logical storage unit.
+                
+        -A JBOD configuration creates a single volume using space from two or more disks.
+        -Spanning is another term for JBOD because the volume spans multiple physical disks.
+        -Data is not striped between disks, but saved to one or more disks (depending on how the operating system decides to save each file). On a new JBOD configuration, data is typically saved to the first disk until it is full. Additional data is saved to the second disk and so on.
+        -Disks used within the spanned volume can be of different sizes.
+        -JBOD uses the entire space available on all disks for data storage (no overhead).
+        -There are no performance or fault tolerance benefits with JBOD.
+        -If one drive fails, you might be able to use disk recovery tools to recover data from the remaining disks.                
+    <h3>5.4.3 Configure Software RAID Windows</h3>    
+        Don't perform as well as hardware counterpart.
+    1) right-click Start -> Disk Management -- must initialize any new disks 
+    2) must convert from 'basic' to 'dynamic' , right click on a disk and 'convert to dynamic disk'
+    3) right-click on disk 1, you can now create a 'spanned volume'(JBOD), 'stiped volume', or 'mirrored volume' 
+    <h2>5.5 File Systems</h2>
+            not covered in this course
+    <h2>5.6 Storage Management</h2>
+            not covered in this course
     <h2>5.7 Storage Spaces</h2>
-    <h3>5.7.1</h3>
+    Storage space-	A Windows function that lets you group physical disks into storage pools and create virtual disks from the available capacity.
+    Two-way mirror resiliency-	A type of resiliency that writes to two storage devices and requires at least two storage devices. This option protects you from a single storage device failure.
+    Three-way mirror resiliency-	A type of resiliency that writes to three storage devices and requires at least five storage devices. This option provides redundancy for the data if two storage devices fail at one time.
+    Parity resiliency-	A type of resiliency that writes parity information across the physical disks using bitwise arithmetic. It requires that you have at least three storage devices and provides fault tolerance against only one failure at a time.
+    Simple data provisioning-	An option that adds space from the storage pool to the storage space. When you select the Simple option, all data in the storage space is lost if one of the drives fails.
+    Thin provisioning-	An option that lets you allocate storage spaces larger than the disk space available in the pool.
+    <h3>5.7.1 Storage Spaces</h3>
+        3 Key Components:
+                Devices (Storage Devices)
+                Pool (Logical Device that encompasses all Physical Storage Devices)
+                Storage Spaces (the allocated space from the 'pool')
+            when you add a new device, you can simply add it to the storage space without repartitioning
+        offers several redundancy protections: 
+                2 way mirroring - requires 2 disk, 1 disk fault tolerance
+                3 way mirroring - requires 5 disk, 2 disk fault tolerance        
+                Parity - requires 3 disk, not as fast, but has less mirroring overhead
+        
+        'Thin Provisioning' 
+    <h3>5.7.2 Create Storage Spaces</h3>            
+        make certain that there are hdd to use for storage Spaces
+          in Control Panel go to 'system and security'
+            go to 'Storage Spaces'
+                -> 'Create a storage pool'
     <h2>5.8 Disk Optimization</h2>
-    <h3>5.8.1</h3>
+    Defragmentation-	The process of moving or rewriting parts of a file to contiguous sectors on the hard disk drive. Defragmentation increases the speed of data access and retrieval.
+    Disk cluster-	A unit of disk space allocation for files and directories.
+    Lost cluster-	A file that has been deleted from the directory listing, but the file allocation table (FAT) still shows the clusters allocated to the file.
+    Cross-linked file-	A file that claims the same cluster as another file.
+    Orphaned files-	Files that exist on the hard drive but are not associated with a directory in the index.
+    Bad sector-	A portion of the hard disk that cannot be used.
+    <h3>5.8.1 Storage Optimization</h3>
+    <h3>5.8.3 Optimize Disk in Linux</h3>
+        ~$  df -h   -- human readable 
+        ~$  du -h /home -- shows all files and directories in home directory 
+        ~$  fsck        -- file system check, has to be on an unmounted drive      
+    <h3>5.8.4 Optomize Disk in macOS</h3>
+        about this mac -> storage -> Management
+         or disk utility (use in recovery mode) -- data, first aid 
     <h2>5.9 Storage and RAID Troubleshooting</h2>
-    <h3>5.9.1</h3>
+    Self-Monitoring, Analysis, and Reporting Technology(S.M.A.R.T.)-	S.M.A.R.T. is a monitoring system that detects drive errors. If S.M.A.R.T. detects the number of errors that indicate a complete hard disk failure is imminent, a warning is displayed during system boot.
+    Input/output operations per second(IOPS)-	The measurement of the number of input/output operations that can be performed per second.
+    BIOS-	Firmware that initializes hardware at startup and provides runtime services to the operating system.
+    Defragmentation-	A process that reduces file fragments by grouping together file pieces on a hard drive.
+    Mean time before failure(MTBF)-	A measurement of a hardware component's reliability, typically stated in hours or thousands of hours.
+    TRIM-	An SSD function that configures the operating system to communicate with an SSD device and tell it the blocks of data on the device that are no longer required and can be deleted.
+    UEFI-	A software program specification that connects firmware to the operating system. UEFI is eventually expected to replace BIOS.
+    RAID-	RAID is a data storage technology that combines multiple physical disk drives into one or more logical storage units. Using RAID can provide data redundancy, performance improvement, or both.
+    <h3>5.9.1 Storage and RAID Troubleshooting Facts</h3>
+    /fixmbr—repairs the master boot record.
+    /fixboot—repairs the boot sector.
+    /rebuildbcd—rebuilds the boot configuration data.
 </pre>
 
     

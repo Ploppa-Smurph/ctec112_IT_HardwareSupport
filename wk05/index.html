@@ -10,7 +10,28 @@
     <h1>CTEC-112 wk05 Chapter 06 System Implementation</h1>
 <pre>
     <h2>6.2 Windows Installation</h2>
-    <h3>6.2.1 Windows Installation</h3>
+    <h3>6.2.1 Windows Installation</h3> 
+       HDD, SDD, Hot-Swappable Drive, External HDD (slower than internal), Flash Drive, RAID
+       
+       configure your RAID: connect storage device, configure the array
+
+       install from DVD, USB (Windows Media Creation Tool)
+        change boot order in BIOS/UEFI 
+       
+        Network Install - boot from NIC
+            PXE Boot - Pre-Boot Execution Environment contacts installer to (WinPE) 
+
+        Disk Imaging - use disk duplication to a disk image on a server and then pushed to additional 
+            faster than other installs - best for installing many versions at once
+            best with identical hardware
+            ideal for volume license
+        Unattended Installation -- create a 'response file' - microsoft deployment imaging service and management (DISM)
+        
+        boot from the intial media - creates a temp RAM environment. need a product key. 
+           accept license term - custom is a clean install, upgrade is to upgrade
+             must partition storage device (may have to manually install driver), Personalize country, keyboard, etc...
+             REBOOT -- 
+    <h3>6.2.2 Prepare Disks for Installation</h3>         
     
     <h2>6.3 Cloud Computing</h2>
     <h3>6.3.1 Cloud Computing</h3>

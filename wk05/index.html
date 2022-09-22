@@ -31,14 +31,98 @@
            accept license term - custom is a clean install, upgrade is to upgrade
              must partition storage device (may have to manually install driver), Personalize country, keyboard, etc...
              REBOOT -- 
-    <h3>6.2.2 Prepare Disks for Installation</h3>         
-    
+    <h3>6.2.2 Prepare Disks for Installation</h3>
+    <h3>6.2.4 Create Bootable Media</h3>         
+            create ISO in ISO Workshop - make iso, give (project)it a name
+                be aware of the size of your .iso
+
+        Use Rufus to burn .iso to make a USB Boot Drive
+    <h3>6.2.5 Configure Workstation for Network Boot</h3>    
+            deploy OS to a new System -- PXE Boot 
     <h2>6.3 Cloud Computing</h2>
+    Cloud computing- A combination of software, data access, computation, and storage services provided to clients through the internet.
+    Public cloud-	A cloud that can be accessed by anyone. Public cloud-based computing resources (such as platforms, applications, and storage) are made available to the general public by a cloud service provider. For example, Google provides many publicly accessible cloud applications, such as Gmail and Google Docs.
+    Private cloud-	A cloud that provides resources to a single organization. Private clouds can be hosted internally, but because of the expense and expertise required to do so, they are typically hosted externally by a third party.
+    Community cloud-	A cloud designed to be shared by several organizations. Access is granted only to the users within the organizations who are sharing the community cloud infrastructure.
+    Hybrid cloud-	A cloud that is a combination of public, private, and community cloud resources from different service providers. The goal behind a hybrid cloud is to expand the functionality of a given cloud service by integrating it with other cloud services.
+    Infrastructure as a Service(IaaS)-	A service that delivers infrastructure to the client, such as processing, storage, networks, and virtual environments. The client deploys and runs software without purchasing servers, data center space, or network equipment.
+    Platform as a Service(PaaS)-	A service that delivers everything a developer needs to build an application. The deployment comes without the cost and complexity of buying and managing the underlying hardware and software layers.
+    Software as a Service(SaaS)-	A service that delivers software applications to the client either over the internet or on a local area network.
     <h3>6.3.1 Cloud Computing</h3>
-    
+            the cloud has storage devices and Network Controllers.
+              you can run software from the cloud.
+            separate from local device using network connection.
+        apps are run from hardware in a data center
+        
+        Public Cloud:
+        Private Cloud:
+        Hybrid:
+
+        Cloud Services include:
+            Software:
+            Infrastructure:
+            Storage:
+
+        IaaS:
+        PaaS: Platform as Service - out host of webhosting -- allows you to build integrated suites of apps 
+        SaaS: more for enduser - allows users to utilize apps (ex: office365). allows you to rent software. 
+                    Simple multi-tenancy: -every user is allocated the resources they pay for, inefficient 
+                    Fine-grain multi-tenancy: - similar to thin provisioning, share a pool of resources with other users   
+    <h3>6.3.2 Cloud Computing Facts</h3>
+    <b>Cloud Advantages</b>
+    Shared resources-	Sharing resources, or resource pooling, allows providers to serve multiple clients and customers with provisional and scalable services. These services can be adjusted to each client's needs without any changes being apparent to the client or end-user.
+                            Through modern scalable systems involved in cloud computing and software as a service (SaaS), providers can create a sense of infinite or immediately available resources by controlling resource adjustments at a meta-level. This allows customers to change their levels of service without being subject to any of the limitations of physical or virtual resources.
+    Metered utilization-	Pay and use computing power uses on-demand computing (ODC) or metering of services. ODC allows resources to be provided on an as needed and when needed basis.
+    Rapid elasticity-	Rapid elasticity is the ability to provide scalable services. In other words, rapid elasticity allows users to automatically request additional space in the cloud or other types of services.
+    High availability-	Cloud computing allows organizations to access the resources they need anytime, anywhere, and on any device. Self-service options make it so that you no longer need to wait for someone else to get you access to resources.
+    File synchronization-	Cloud computing allows for file synchronization across an organization. When one user makes changes to a file, those changes can automatically be synced with the files of other users. This is particularly helpful for employees who work from home or for organizations with multiple geographic locations.
+
+    <b>Cloud Computing Models</b>
+    Infrastructure as a Service (IaaS):	IaaS delivers infrastructure (such as processing, storage, networks, and virtual environments) to the client. The client deploys and runs software without purchasing servers, data center space, or network equipment.
+    Platform as a Service (PaaS):	PaaS delivers everything a developer needs to build an application. The deployment comes without the cost and complexity of buying and managing the underlying hardware and software layers.
+    Software as a Service (SaaS):	SaaS delivers software applications to the client either over the internet or on a local area network. SaaS can be:
+                    -A simple multi-tenancy implementation in which customers have their own resources that are segregated from other customers.
+                    -A fine grain multi-tenancy implementation in which resources are shared, but data is segregated from other customers.  
     <h2>6.4 Virtualization</h2>
+    Hypervisor-	A thin layer of software that resides between the virtual operating system and the hardware. A hypervisor allows virtual machines to interact with hardware without going through the host operating system.
+    Virtual machine-	A software implementation of a computer that functions like a physical computer, including application execution.
+    Virtual hard disk-	A file created within the host operating system that simulates a hard disk for the virtual machine.
+    vSwitch-	Software that facilitates the communication between virtual machines by checking data packets before moving them to a destination. A vSwitch may be software installed on the virtual machine, or it may be part of the server firmware.
+    vRouter-	Software that performs the tasks of a physical router. Because virtual routing frees the IP routing function from specific hardware, you can move routing functions around a network.
     <h3>6.4.1 Virtualization</h3>
-    
+        Standard Model - Computer has CPU, Storage, Memory use OS -- highly inefficient
+    Virtual Model - run a Hypervisor and then run OS (type 1 or 'bare-metal'). -- ex: Windows HyperV
+                    Type 2 - runs Host OS, then Hypevisor layer on-top with additional OS' -- ex: VMWare Workstation and Parallels for Mac.    
+    VDI - Virtual Desktop Infrastructure -- host does all processing - end user access desktop through 'connection broker'                
+          On-site:
+          Cloud:
+    Container Virtualization: OS - Container (Docker) -
+<h3>6.4.2 Virtualization Overview</h3>
+    <b>Benefits:</b>
+    Sandbox virtualization-	The process of creating an isolated testing environment. Virtualization lets you easily create a sandbox by isolating components from the production network.
+                            Using a virtualized sandbox (sometimes known as a playground) gives network administrators and developers a safe place to create new software, test software development, install new software, or upgrade existing software without risking the production network.
+    Application virtualization-	The process of installing and accessing applications virtually. This can help reduce licensing costs; increase accessibility for local and remote employees; and make it easier to install and maintain applications.
+    Legacy software access-	Outdated software use. Some organizations require the use of proprietary or legacy (outdated) software. Virtualization can provide access to this software even if a user’s local PC is running an updated operating system.
+    Cross-platform virtualization-	The process allowing an operating system to access an application designed to run on a different operating system.
+    Hardware optimization-	The process of making the most efficient use of physical hardware. For example, instead of being idle, the processor is optimized to process several tasks at a time.
+    <b>Components:</b>
+    Host machine-	Most commonly a physical server that has the hardware necessary to create a viable, virtualized environment. The following hardware is shared by the VM and managed by the hypervisor.
+                    -Hard disk drive(s)
+                    -Optical drive(s)
+                    -RAM
+                    -CPU(s)
+                    -NIC(s)
+                    The number of VMs a host can handle depends on the physical build of the host server.
+    Hypervisor-	A thin layer of software (think of it as a type of OS for the host machine) that resides between the virtual operating system and the hardware. A hypervisor allows virtual machines to interact with the hardware without going through the host operating system.
+    Virtual machine-	A software implementation of a computer that executes programs like a physical machine. The virtual machine appears to be a self-contained and autonomous system. It can be on a host server (enterprise-level) or a PC (small scale).
+    Virtual hard disk (VHD)-	A file created within the host operating system that simulates a hard disk for the virtual machine.
+    vSwitch-	Software that facilitates the communication between virtual machines by checking data packets before moving them to a destination. A vSwitch may be software installed on the virtual machine or it may be part of the server firmware.
+    vRouter-	Software that performs the tasks of a physical router. Because virtual routing frees the IP routing function from specific hardware, you can move routing functions around a network.
+    Virtual firewall application (VFA)-	Software that functions as a network firewall device that provides packet filtering and monitoring. The VFA can run as a traditional software firewall on a virtual machine.
+<h3>6.4.3 VMWare Workstation</h3>
+    currently have VMWare Workstation 16 installed on the system to experiment with.
+<h3>6.4.4 Hyper-V</h3>
+
 </pre>    
     
 </body>

@@ -4,13 +4,117 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTEC-112 Ch 06 </title>
+    <title>CTEC-112 Ch 07 and 09 </title>
 </head>
 <body>
-    <h1>CTEC-112 Ch 06 </h1>
+    <h1>CTEC-112 Ch 07 Virtual Memory and Ch 09 File Encryption</h1>
 <pre>
-   <h2>6.</h2>
-   <h3>6.</h3> 
+   <h2>7.7 Virtual Memory</h2>
+    Virtual memory-	Simulated memory that is implemented as a page file on a hard drive.
+    Paging-	The process of moving data from RAM to hard disk and back again. This process is also called swapping.
+    Virtual Memory Manager(VMM)-	The utility that manages swapping data between physical memory and the hard disk.
+    Disk thrashing-	The condition where the physical memory is so insufficient that data must be continuously moved from physical RAM to disk and back again.
+   <h3>7.7.1 Windows Virtual Memory</h3>
+    virtual memory in windows - paging -- will move data from RAM onto HDD (as a paging file) as virtual memory.
+        windows will map memory to both RAM and Virtual Mem
+    Disk Thrashing - hdd light on constantly
+      unload unnecessary apps
+      upgrade ram
+    <b><i>System Properties -> About -> Advanced System Setting -> Page File Settings</i></b>    
+   <h3>7.7.2 Manage Virtual RAM</h3>
+        <i><b>in windows 11 - 'System' -> under 'About' -> 'Advanced System Settings' -> 'Advanced' Tab in System Properties -> 'Performance' options dialog -> 'Advanced' Tab in Performance Options -> Finally 'Virtual Memory' and we can 'Change'</b></i>
+    This will allow us to change the Paging File location and Size ('Paging File' is the Virtual Memory File in Windows).
+        deselect the 'Auto manage' at the top 
+          choose which drive you want to utilize
+            create the custom Size -- standard is 1.5 physical ram for minimum; 3x physical RAM size for max size. (ex: current computer has 16GB mem, so min paging would be 24GB and max would be 48GB)
+               -- crash dumb settings not covered in this lesson
+            be certain to select drives you DO NOT want paging files on and choose 'no paging files' and then hit OK at the bottom.
+             The system will need to restart  
+   <h3>7.7.3 Virtual Memory Facts</h3> 
+        -You can manually configure the maximum size of the virtual memory paging file and the disk where the paging file is stored.
+        -The most common recommended minimum page file size is about 1.5 times the amount of physical RAM with a maximum of three times the current size of RAM. However, there are exceptions to this rule:
+            -Systems that have a very small amount of physical RAM installed may require a page file that is 2 times the size of the installed RAM.
+            -Systems with very large amounts of physical RAM installed typically don't require a large page file.
+        -To increase performance, move the page file to a different physical disk than that used by the operating system. You can also divide the paging file between two drives to increase performance.
+        -If the paging file is on the system drive, Windows creates a memory dump file if the system crashes. Support personnel might be able to use this file to help identify what caused the system crash. To save a memory dump, the paging file must reside on the system partition.         
+
+    Virtual memory key terms:
+
+    Swapping or paging - The process of moving data from RAM to disk and back.
+    Virtual Memory Manager (VMM) - A mechanism in Windows that automatically manages the swapping of data between physical memory and the hard disk.
+    Disk thrashing - occurs when the physical RAM is inadequate and the CPU becomes over utilized in a continuous state of swapping data from RAM to disk and back again
+
+    VMM follows these steps to manage applications:
+
+        1)The VMM assigns virtual addressing to an application. This is known as logical segmentation.
+        2)The application is loaded into physical RAM (absolute address space). The process doesn't recognize its location in physical RAM; it only recognizes its virtual space.
+        3)As the user launches other applications, the VMM allocates space to those applications in true physical RAM.
+        4)When there is no more space in physical RAM, the VMM takes the application that hasn't been used for the longest period of time and place it in the page file on the hard drive. This is known as paging out. Likewise, when an application is moved from the page file back into physical RAM, it is known as paging in.
+        5)If the system needs access to an application that has been paged out from physical RAM, a problem known as a page fault occurs. When this happens, the VMM will page out (to the page file on the hard drive) the program in the physical RAM that hasn't been used for thelongest period of time. It then will page in (to physical RAM) the application currently being accessed.
+   <h2>9.3 File Encryption</h2>
+   Encryption-	A process that makes digital materials accessible only through authorized decryption software or devices.
+   File encryption-	A process that encrypts the contents of an individual file.
+   Disk encryption-	A process that encrypts the entire contents of a hard drive.
+   Data transmission encryption-	A process that uses encryption to protect data sent through a network.
+   BitLocker partition-	A volume that contains the boot files.
+   Trusted Platform Module (TPM)-	A special hardware chip that generates and stores cryptographic keys.
+   File Encryption Key (FEK)-	A symmetric encryption key used to both encrypt and decrypt a file.
+   <h3>9.3.1 File Encryption</h3>
+    using EFS (Encryption File System) - supported by NTFS -- allows permissions with NTFS 
+      - file and folder levels - different than 'bitlocker' which encrypts the entire volume -- EFS is per file or folder
+        EFS creas FEK (File Encryption Key) - the FEK is then encrypted with Asymmetric Encryption 
+          the EFS Certificate is the Public Key
+     better to encrypt at the folder level, not the file level. some temp files won't be encrypted 
+
+     if you copy EFS files to a non-NTFS file system then the encryption will be dropped 
+    <h3>9.3.2 File Encryption Facts</h3> 
+    <b>File Encryption</b>
+            File encryption changes the content of individual files so that only authorized users can read the contents.
+        
+        -The Encrypting File Service (EFS) on Windows systems encrypts individual files. Windows automatically decrypts a file when the file owner accesses it.
+        -With EFS, you can allow other users to access the decrypted file.
+        -EFS is available only on NTFS partitions. Moving an encrypted file to a non-NTFS partition removes the encryption.
+        -Files remain encrypted and inaccessible even when the drive is moved to another computer or another operating system is used. The encryption keys needed to decrypt the file do not exist on these other systems.
+        -You can't use encryption with compression. You can use either, but not both.
+        
+        How EFS works:
+        
+            -EFS creates a file encryption key (FEK) for the file or folder. The FEK is a symmetric key. A symmetric key is a key that both encrypts and decrypts the data.
+            -To add a much greater level of security, EFS also encrypts the FEK using asymmetric encryption.
+                -Asymmetric encryption is a type of encryption that uses a key pair for stronger security.
+                -The key pair includes a public key that can be seen by anyone and a private key that only the user has access to.
+            -EFS takes the FEK, encrypts it using the public key, and then stores it with the encrypted file.
+            -The user's private key is used to decrypt the FEK when the file is opened. The FEK then decrypts the data within the file.
+            -If the user account doesn't have a key pair, Windows automatically creates a public key (called the EFS certificate) and its associated private key the first time EFS is enabled.
+    
+    <b>Data Transmission Encryption</b>
+
+    An attacker can potentially intercept and read data sent through a network. It's best to secure transactions by encrypting data sent through a network. You should be aware of the following solutions to protect data communications.
+    
+        -A virtual private network (VPN) uses an encryption protocol to establish a secure communication channel between two hosts, or between two sites. Data that passes through the unsecured network is encrypted and protected. IPsec, PPTP, and L2TP are common protocols used for establishing a VPN.
+        -Secure Sockets Layer (SSL) is a protocol you can add to other protocols to provide security and encryption. For example, HTTPS uses SSL to secure web transactions.
+        -You can use WPA, WPA2, or WEP to secure wireless communications, which are highly susceptible to eavesdropping (data interception). WEP, WPA Personal, and WPA2 Personal use a common shared key configured on the wireless access point and on all wireless clients.
+        -When implementing network services, do not use protocols such as FTP or Telnet that pass logon credentials and data in clear text. Instead, use a secure alternative such as FTP-S or SSH.
+    <h3>9.3.3 Encrypt Files</h3>
+        'File Explorer' -> choose your folder
+            in the example -- wants to encrypt a performance review file 
+             -right-click file -> 'Properties' -> 'Advanced' -> check 'Encrypt contents...' -> apply and ok
+              normally you will encrypt entire folders, this ex: only encrypting the 1 file.
+    <h3>9.3.5 Bit Locker</h3>    
+        encrypts entire volumes on the disk. 
+
+        protects data if computer is offline, in case drive is removed. 
+            -encrypts entire storage - paging and hibernation files are encrytped
+            -verifies boot integrity
+        bitlocker uses TPM (Trusted Platform Manager) - ensures only available in the original computer with original boot.
+
+    must have a non-encrypted System volume
+    <h3>9.3.6 Use Bit Locker</h3>
+        TPM Admin -- TPM needs to be in 'Ready to Use' Status -- otherwise need to prepare for TPM
+    <h3>9.3.7 Bit Locker To Go</h3> 
+        encrypt USB or External Devices
+            
+
 </pre>    
 </body>
 </html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTEC-112 wk 07 Chapter 10 Peripheral Devices</title>
+</head>
+<body>
+    <h1>CTEC-112 wk 07 Chapter 10 Peripheral Devices</h1>
+<pre>
+    <h2>10.1 Peripheral Devices</h2>
+        Digitizer-	A device that captures an analog signal and turns it into digital data. Examples include graphics tables, document scanners, and 3D scanners.
+        Input device-	A device that sends data to a computer.
+        Input/output (I/O) device-	A device that can input data to a computer and accept output data from a computer. Examples include CD-ROMs, DVD-ROMS, USB flash drives, hard disk drives, network adapters, and Bluetooth adapters.
+        Keyboard, video, mouse (KVM) switch-	A switch that allows multiple computers to use a single keyboard, mouse, and monitor.
+        Lumen-	A unit of measurement that indicates an amount of light.
+        Near-field communication (NFC)-	A set of communication protocols that allow devices to communicate when they are within 1.6 inches of one another. NFC devices are commonly used in retail stores and restaurants with Tap Pay phone apps.
+        Output device-	A device used to send or display data from a computer.
+    <h3>10.1.1 Peripheral Device Video</h3>
+        any device that sends information to or receives information from a computer system. ex: usb keyboard or a complex security system with cameras and recording hardware.
+       
+        1) Input devices: keyboard, mouse, scanners, etc
+        2) Output devices: monitor, printer, etc
+        3) I/O device (Input Output Device): KVM Switch, Touchscreen
+        
+        most devices are plug-and-play, most use usb or firewire.  Displays use display specific connection types. Bluetooth connects wireless through bluetooth.
+
+        pair your components correctly. 
+
+        some hardware may need drivers and software to operate correctly.
+    <h3>10.1.2 Peripheral Device Facts</h3>
+    When connecting peripheral devices, consider the following recommendations:
+
+        -Make sure the computer supports the connection type used by the device.
+            -Most peripheral devices use USB connectors.
+            -Older peripheral devices can use PS/2, serial, or parallel connectors. For these devices, you can use an adapter (e.g., a PS/2 to USB adapter).
+            -An expansion card can be added to provide the necessary connections.
+        -Identify the system requirements of the peripheral device. Some peripheral devices specify a minimum CPU speed, memory size, or OS version.
+        -Install any necessary drivers or software.
+        -Configure the device in the OS and verify that it is working correctly.
+    <h2>10.2 Display Devices</h2>
+        Color depth-	The number of bits used for each color component of a single pixel.
+        Resolution-	A measurement of an image's sharpness and clarity. The more pixels that make up an image, the higher its resolution.
+    <h3>10.2.1 Configure Display Settings in Windows</h3>
+        Right Click windows icon - system -> display    OR Right click windows desktop->display settings
+
+    configure 'Display Resolution' 
+      can 'Extend Desktop'  
+    <h3>10.2.2 Configure Advanced Display Settings in Windows</h3>   
+        optimize performance in windows:
+
+        in Display Settings -> Advanced Display Settings
+
+        Adapter Tab: tells about Video
+    <h3>10.2.4 Configure Display Settings in Linux</h3>
+        right click desktop -> display settings
+    <h3>10.2.5 Configure Display Settings in macOS</h3>
+        apple menu -> System Preferences
+
+            go to -> desktop & screen saver -> for background images & screen saver settings
+             go to -> security & privacy -> change screen saver password settings here    
+        
+        or  -> Displays
+            use the native resolution of the monitor -- if you do need to change check the 'Scaled' option
+             -can change color profile here
+             -refresh rate
+             -rotation
+             - and 'night shift' settings
+        there are some general display settings in the settings area on the bar 
+    <h3>10.2.6 Display Settings Facts</h3> 
+    LCD
+    OLED 
+    Plasma
+    Projector      
+    <h2>10.3 Display, Video, and Projector Troubleshooting</h2>
+        Artifact-	Part of an image that stays on-screen after the screen is cleared of the image.
+        Burn-in-	When an image displays on a screen for too long and becomes permanently stuck. It is also known as image retention (IR).
+        Codec-	A standard for compressing and decompressing audio and/or video.
+        Video Graphics Array (VGA) mode-	A simplified startup mode that can help you troubleshoot video card issues that interrupt Windows OS functions.
+    <h3>10.3.1 Video Troubleshooting</h3>
+        adapter -> cable -> monitor -- 3 physical parts to troubleshoot 
+    <h3>10.3.2 Video Troubleshooting Facts</h3>    
+    System does not boot-	Computers require a functioning video card in order to boot.
+            -If the system does not boot and the monitor is blank, check the monitor's power and video connections.
+            -If the motherboard returns a POST error (either a code or a series of beeps), ensure the video card is seated properly and has the necessary power connections. If the motherboard still returns a POST error, the video card is bad and should be replaced.
+    Colors not correct / Colors are not smooth- 	Incorrect colors are often caused by low color depth settings.
+            -A color palette is the current list of colors that can be shown on the screen.
+            -Color shift occurs when a new image must load a different palette than is currently used.
+            -To correct color shift, increase the color depth of the display.
+    Blurry images, strange color tints-	  This problem is often caused by a weak or corrupt signal from the video card.
+            -Make sure the monitor cable is securely fastened to the video card.
+            -Check for bent or missing pins.
+    Image missing, doesn't fill the screen, skewed, or cut off- 	Set the display resolution to the monitor's native resolution. If the display isn't visible at all, check the monitor's brightness settings to verify that the screen isn't dimmed.
+    
+    Program or system lockup, system crashes, slow video performance-	Software or system problems can be caused by incorrect video settings, especially for programs that have high video demands. To correct the problem:
+            -Update the video card drivers.
+            -Decrease the video acceleration settings. This decreases the amount of processing done by the video card.
+    
+    Screen flickers or appears wavy, user reports headaches- 	A flickering screen can be caused by too low of a refresh rate or a loose video cable.
+            -Make sure the video cable is properly connected.
+            -Set the refresh rate to the maximum allowed by the monitor.
+            -If you cannot increase the refresh rate, try decreasing the resolution size and see if higher refresh rates become available.
+                -Maximum refresh rate is determined by the monitor, the video card, and the video cable. To achieve higher refresh rates, one (or all) of these components may need to be upgraded.
+    
+    Scrambled or distorted images, blank screen-	These problems are typically caused by improper resolution settings or settings outside the scope of the monitor.
+            -Always set the resolution to the display's native resolution.
+            -If necessary, upgrade the monitor to allow for higher resolutions.
+    
+    Image does not display on a second monitor-	For problems with dual-monitor systems:
+            -Make sure the video card supports dual display.
+            -Verify that the operating system supports and is configured for dual displays.
+            -In display settings, extend the desktop onto the second monitor.
+    
+    Slow performance when drawing screens-	By default, Windows automatically adjusts visual effects based on system performance. You can manually modify the types of effects used to optimize how Windows looks and performs.
+            -In general, the more visual effects that are enabled, the more CPU and graphics processing is required.
+            -If the system has a slow processor, low memory, or not enough video memory, using visual effects can make the system respond slowly.
+            -Use the advanced system settings to edit performance settings for visual effects.
+              --In File Explorer, right-click This PC and select Properties.
+              --Select Advanced system settings.
+              --On the Advanced tab under Performance, select Settings.
+            -Optimizing for appearance turns on all visual effects. Optimizing for performance turns off all effects. Effects can be enabled or disabled individually.
+    
+    Stuck/dead pixels-	A pixel that is stuck is in an always on state and displays white. A dead pixel is stuck in an off state and displays black.
+            -Stuck pixels can be fixed by playing special videos that display a series of colors. Sometimes the video needs to be played for several hours.
+            -Most of the time, dead pixels are caused by a malfunctioning pixel and cannot be fixed.
+    
+    Image retention, screen burn-in	Image retention (IR)-   is caused by a static image being displayed for too long on a screen, creating a shadow of the image that is visible even when the display is off. This is typically a problem for plasma displays only. Most of the time, IR can be fixed by displaying bright white on the screen for an extended period of time. When the image cannot be fixed and is permanent on the screen, it is known as burn-in.
+            
+    Video files do not play, audio plays but no video-	Digital video can be saved in one of several file formats (called codecs). Before you can play a video file, your computer must have the corresponding codecs installed. Many video files use two codecs, one for video and one for audio. If the audio plays but the video does not, then you know you have the correct audio codec, but need the video codec installed.
+    <h3>10.3.3 Projector Troubleshooting</h3>
+        check cable connections and cables
+        check vents
+        check bulb / replace bulb
+        dimness could be caused by bad inverter
+        check batteries in remote control
+        check resolution settings on computer
+        check driver
+        clean LCD panels / replace LCD replace
+        check 'indicator light' if applicable
+        check audio output settings 
+        check audio delay function to sync audio & video
+    <h3>10.3.4 Projecter Troubleshooting Facts</h3>    
+    Things to check:
+
+        -Projector is plugged in to a power source and turned on.
+        -Power cord is undamaged and fitted tightly in the outlet and the projector.
+        -Projector is connected to the source computer with the correct cable in the correct port.
+                -Projector inputs can vary from VGA, HDMI, HDMI1, HDMI2, and more. Check for compatibility with computer to select the best cable.
+                -You should replace a questionable cable with a known good cable to test for cable problems.
+        -Projector bulb or lamp is bright, tightly fitted, and not too hot.
+                -Issues with display contrast, brightness, dimming, flickering, or wavering can indicate a bulb that is close to the end of its life.
+                -No display can indicate the bulb has failed or is overheated.
+                -To correct, replace bulb (or allow it to cool) and retest.
+        -All vents are clean and unobstructed to avoid overheating.
+        -Inverter is working properly. A bad inverter can cause dimness. Replace inverter when needed.
+        -Remote control batteries have power and are installed correctly.
+    <h2>10.4 Device Driver Management</h2>
+        Direct memory access-	Conduits used by high-speed devices to bypass the CPU and communicate directly with RAM.
+        Driver-	  A program that enables the operating system to interact with hardware devices.
+        Hot swappable device-	A device that can be added and removed without shutting down the computer. For example, thumb drives are hot swappable.
+        Interrupt request (IRQ)-	A communication method that allows a device to interrupt the CPU and request processing time.
+        Input/output (I/O) address- 	A data address that allows two devices in a computer to send information to each other.
+    <h3>10.4.1 Device Installation Video</h3>
+        most are Plug-and-Play 
+            3 System Resources a device much have:
+                        - I/O Address -- hexadecimal address assigned to a device
+                        - IRQ (Interrupt Request line) -- used to send interupt messages to the CPU
+                        - DMA (Direct Memory Access) Channel - IEEE 1394 interface -- they bypass the CPU and create a direct connection to system memory 
+        Plug-and-Play -- don't need manual configuration
+        Legacy Device - need IRQ to operate 
+
+        Device Drivers - allows communication between OS and particular device
+            -- ONLY Admins can install drivers
+            -- Drivers are both Hardware and Software specific        
+            -- Use digital signatures (Driver Signing)    
+            -- Need to keep updated
+        Hot Swappable Devices - best to 'Safely Remove Hardware' 
+    <h3>10.4.2 Install and Manage Device Drivers on Windows</h3>
+        right click windows icon -> Device Manager 
+            lists all the devices connected to the system
+        'msinfo32' -- system information -- let's you view, but not change
+    <h3>10.4.3 Manage Devices on Linux</h3>
+        view Hardware on Linux -- in Ubuntu
+          $ cd /proc
+          $ ls
+        can look at cpu info by typing:
+            $ less cpuinfo
+        to view interrupts:
+            $ cat interrupts
+        to view 'kernel modules':
+            $ lsmod
+        use hwinfo:
+            $ hwinfo | more
+        
+        you can also use the 'settings' to change some basic information.
+    <h3>10.4.4 Manage Devices on macOS</h3>
+        use search -> system information
+    <h3>10.4.6 Device Driver Installation Facts</h3>         
+    Use Device Manager to view installed devices and their status.
+
+    The following methods can be used to open Device Manager:
+        -Right-click Start and select Device Manager.
+        -In the search field on the taskbar, type Device Manager.
+        -Press the Windows key + R and type devmgmt.msc.
+    Use the device icon to identify the status of the device:
+        -If the icon for the device is not there, then Windows did not detect the device. Try scanning for new hardware or rebooting the system to detect the device.
+        -A normal icon means the device was configured, the appropriate driver was installed, and the device is working properly.
+        -An icon with a yellow exclamation mark means the device was detected, but could not be configured properly. In this case, make sure you have the latest driver for the device.
+        -An icon with a black down arrow means the device is disabled.
+    To identify the system resources used by a device:
+        -Right-click the device and select Properties.
+        -Select the Resources tab.
+    The following methods can be used to view all resources used by the computer:
+        -On the file menu in Device Manager, select View > Resources by type (or Resources by connection).
+        -Press the Windows key + R and type Msinfo32.
+    <h2>10.5 Device Driver Troubleshooting</h2>
+        Roll back-	Revert a system that has received an update or other change to its previous state.
+    <h3>10.5.1 Device Driver Troubleshooting</h3>
+        - verify connections and cables
+        - verify power is supplied
+        - make certain card is seated and secure
+        - make certain device shows up in BIOS / UEFI 
+          
+        Device Status:
+            - Grey Arrow = device disabled
+            - Yellow Triangle with ! = device not working properly
+            - Yellow ? = driver is not loaded but device is detected 
+    <h3>10.5.2 Troubleshoot Devices</h3>        
+           -- simplest way - System Restore
+                if restore point was created
+           -- boot in safe mode
+    <h3>10.5.3 Work with Legacy Devices and Drivers</h3>
+            -device manager
+                - other device - check for drivers for the specific device added.
+</pre>    
+    
+</body>
+</html>

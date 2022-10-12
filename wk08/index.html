@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTEC-112 wk 08 Chapter 11: Networking</title>
+</head>
+<body>
+<h1>CTEC-112 wk 08 Chapter 11: Networking</h1>
+<pre>
+<h2>11.1 Networking Overview</h2>
+Network-	A group of interconnected computers and devices that can share information information with each other
+Subnet- 	A portion of a network with a common network address.
+Nodes or hosts- 	Devices that reside on the network. Hosts can range from a computer, tablet, mobile phone, gaming console, IoT device, or server.
+Transmission media- 	The medium that is used to carry electrical or radio signals between connected network hosts.
+Network Interfaces- 	Converts the digital network data into a signal that can be transmitted along the transmission medium.
+Protocols-  	Rules or standards that describe how hosts communicates and exchange data.
+Peer-to-peer- 	Network in which hosts can both share and access data.
+Client-server-   Network in which hosts have specific roles.
+Storage Attached Network (SAN)-  	A special type of network that provides high-speed access to storage across the network. Specialized hardware is used to store and provide access to needed data.
+Body Area Network (BAN)- 	A very small network that consists of wearable or implanted devices such as a smart watch, fitness trackers, or medical implants.
+Personal Area Network (PAN)- 	A small network for communication between personal devices such as wireless earbuds and a cell phone.
+Local Area Network (LAN)-  	A network in a small geographic area, like an office. A LAN typically uses wires to connect systems together.
+Wireless Local Area Network (WLAN)-	  Same as LAN but uses wireless connection.
+Campus Area Network (CAN)-   Sometimes referred to as a corporate area network, this network type is established when multiple LANs are connected together within a limited area, such as a college campus or between multiple buildings that are owned by the same organization.
+Metropolitan Area Network (MAN)-   A network that covers an area as small as a few city blocks to as large as an entire metropolitan city.
+Wide Area Network (WAN)- 	Group of LANs that are geographically isolated but are connected to form a large internetwork.
+Wireless Mesh Network (WMN)- 	A group of wireless mesh nodes that communicate with one another to share the network connection across a large area. Each device in the WMN uses the others as relays to avoid the need for infrastructure.
+Wireless Wide Area Network (WWAN)-  	Similar to WLAN but uses different technology to connect to the internet. Also known as 4G, 5G, or LTE networks.
+Internetwork-	 A network with geographically disperse connections that connect multiple LANs.
+Internet- 	Large, world-wide, public network.
+Intranet- 	Private network that uses internet technologies.
+Extranet-	Private network that uses internet technologies but its resources are made available to trusted external users.
+    <h3>11.1.1 Networking Introduction</h3>
+        networks are interconnected computers sharing data -- the internet is the worlds largest network
+    
+    Components on the network: ex: computer; tablet; mobile; laptop; game system; & thermostat   
+        cabling, fiber optics, or wireless radio signals
+    
+    switch = central connection point
+
+    wap wireless access point = 
+
+    router = connects multiple networks together
+
+    each device has a unique identifier - the network id & host id 
+       written out as IP address
+          each part of the address is 1 octet
+      find out info with the subnet mask = 255.0.0.0 /8
+                                           255.255.0.0 /16
+                                           255.255.255.0 /24    
+
+    ip address - network portion comes first; last part is host portion 
+                ex: 192.168.0.50
+                    255.255.0.0
+             
+     in the above ex: 255 in the subnet = network ID  [192.168] is the network portion of the ip address
+                      0 in the subnet = Host ID    [0.50] is the host id part of the ip address                    
+
+    sharing resources is; ie: network printer or file storage
+<h3>11.1.2 Network Types</h3>
+need to know the role of each device in our system:
+
+server & client 
+
+Peer-to-Peer = client & server (workgroups) 
+            - easy to implement
+            - relatively inexpensive
+            - use existing hosts
+            - no special software
+
+    cons of peer-to-peer: 
+            - not scalable
+            - no centralized control
+            - no central file storage
+            - fewer safeguards for data      
+
+Client-Server network model
+        set up server for files
+                      for email
+                      for printer  
+                      
+        and clients use the information stored centrally on the server
+        
+    user accounts, sharing permissions, and network management are all handled by the client?
+
+server runs server OS that only runs server tasks. 
+  clients run os for every day work task, desktop apps, has special client software to network with the server
+
+  client-server cons: requires more planning
+                        - more cost
+
+BAN Body-A-Network 
+PAN Personal Area Network
+LAN Local Area Network 
+WLAN Wireless LAN
+CAN or Campus Area Network or Corporate Area Network
+MAN Metropolitan Area Network joins multiple CANs across one metropolitan area
+WAN Wide Area Network Connects LAN between cities
+SAN Storage Attached Network -- provides great data protection
+<h3>11.1.3 Networking Facts</h3> 
+-Devices - Devices can include a computer, tablet, mobile phone, gaming console, IoT device, and server. The devices are typically referred to as network nodes or hosts.
+-Transmission medium - The transmission medium connects network devices. Examples include twisted pair cabling, fiber optics, and wireless radio signals.
+-Network interface (NIC) - The network interface converts the digital data into a signal that can be transmitted along the transmission medium.
+-Specialized devices are used to connect host devices together. These connection devices include:
+    -Routers to connect multiple networks together.
+    -Switches to connect multiple computers inside of a network together.
+    -Access point to connect wireless network hosts.
+-Networking protocols - These are standards that define how data is formatted and how the network hosts will talk to each other.
+
+<i>'Every device on a network requires a unique address. The Internet Protocol version 4 (IPv4) formats the unique address using four octets that are each separated by a period. The IPv4 address is split into two components:
+
+    The network ID defines the network address. Every host on the device has the same network ID.
+    The host ID is a unique value that is different for each device.
+    The subnet mask defines the octets that belong to the network ID and the octets that belong to the host ID. The standard subnet mask consists of four octets that match to each octet in the IPv4 address. Each octet in the subnet mask consists of two values, usually 255 or 0, but not always. Octets with 255 represent the network ID and 0’s represents the host ID. For example:
+    
+    The IP address 192.168.0.5 with a subnet mask of 255.255.0.0 shows that the first two octets in the IP address are the network ID and the last two octets are the host ID.
+    Often, a large network is split into smaller networks called subnets. The subnet mask defines which network a host belongs to. Two devices need to be on the same subnet to communicate. If they are on different subnets, the traffic has to be sent through a router which will forward it onto the other network.'</i>
+
+Wireless mesh network (WMN)-	A wireless mesh network is a group of wireless mesh nodes that communicate with one another to share the network connection across a large area.
+
+    -WMNs provide the ability to stream voice, data, and video between arbitrary pairs of devices. Each device in the WMN uses the other devices in the WMN as relays to avoid the need for infrastructure.
+    
+Wireless wide area network (WWAN)-	A wireless wide area network covers a large geographical area by connecting separate areas wirelessly. WLAN and WWAN both connect to the internet wirelessly, but they use different technologies to do it.
+    WWANs are often referred to as 4G, 5G, or LTE networks because they usually use cellular network technologies as connection types.
+
+Subnet-	  A subnet is a portion of a network. All devices on the subnet share a common network address.
+    -All devices on the subnet share the same network address, but each has a unique host address.
+    -Each subnet in a larger network has a unique subnet address.
+    -Devices connected through hubs or switches are on the same subnet. Routers are used to connect multiple subnets.    
+
+Internet-	The internet is a large, world-wide, public network. The network is public because virtually anyone can connect to it. Users or organizations make services freely available on the internet.
+    -Users and organizations connect to the internet through an internet service provider (ISP).
+    -The internet uses a set of communication protocols (TCP/IP) for providing services.
+    -Individuals and organizations can make services (such as a website) available to other users on the internet.
+    
+Intranet-	An intranet is a private network that uses internet technologies. Services on an intranet are available only to hosts that are connected to the private network.
+    -For example, a company might have a website that only employees can access.
+    
+Extranet-	An extranet is a private network that uses internet technologies and makes its resources are made available to external trusted users.
+    -For example, you might create a website on a private network that only users from a partner company can access.      
+
+    -Personal Area Network (PAN): a very small network used for communication between personal devices. For example, a PAN may include a notebook computer, a wireless headset, a wireless printer, and a smartphone. A PAN's range is limited to only a few feet.
+    -Local Area Network (LAN): a network in a small geographic area, like an office. A LAN typically uses wires to connect systems together. For example, a LAN is usually a set of subnets connected to each other using routers to connect the subnets.
+    -Wireless Local Area Network (WLAN): a network that covers an area that is roughly the same size as a standard LAN. However, it uses radio signals instead of wires to connect systems together.
+    -Metropolitan Area Network (MAN): a network that covers an area as small as a few city blocks to as large as an entire metropolitan city. MANs are typically owned and managed by a city as a public utility.
+    -Wide Area Network (WAN): a group of LANs that are geographically isolated, but are connected to form a large internetwork.    
+
+    The network interface (NIC) converts the digital data into a signal that can be transmitted along the transmission medium.
+
+    Devices are connected together using a transmission medium. Examples include twisted pair cabling, fiber optics, or wireless radio signals. They do not convert the data into a digital signal.
+    
+    Switches are used to connect multiple computers inside of a network together. They do not convert the data into a digital signal.
+    
+    The network protocols define how data is formatted and how the network hosts will talk to each other. They do not convert the data into a digital signal.    
+<h2>11.2 Networking Ports & Protocols</h2>
+TCP-	A connection-oriented protocol. This means that when data is sent between two hosts, the TCP protocol ensures that every packet sent is received before sending the next packet.
+UDP-	A connectionless protocol. Instead of verifying that each packet sent is received, UDP sends the packets one at time and the receiver processes them as they come in.
+Port-	A part of a computing device that can connect to peripherals or cables. A computer port is like a door into the system. There are 65,536 possible network ports. The port number tells the host device the type of traffic sent and where to send it to.
+3-way handshake-	The process two devices go through to establish a TCP connection.
+<h3>11.2.1 TCP and UDP</h3>
+
+packet and packet header --- breaks large bits into packets sort them by their headers
+
+    TCP Transfer Control Protocol --  connection oriented - when data is sent, host verfies all data is received. 
+      **aside: https & ssh are both connection oriented protocols 
+    
+    3 way handshake: SYN is sent to start; SYN + ACK is sent to acknowledge; ACK is sent to confirm and begin transmission: 
+        for TCP with each data packet sent an ACK packet is sent from the client to acknowledge receipt
+    
+    TCP is normally used in a suite with the IP Internet Protocol... TCP/IP
+        send data across internet: IP handles delivering data
+                                   TCP handles segments and sequences
+
+    UDP is connectionless - great for video and audio streaming -- very low latency 
+            the video or audio stream can loose some quality and still work
+      **aside: TFTP Trivial File Transfer & DHCP Dynamic Host Configuration Protocol are both connectionless
+<h3>11.2.2 TCP/IP Protocol Facts</h3>
+Each packet contains a packet header which is a special label that defines the sender, receiver, and order position of the packet.
+    When the receiving host receives all the packets, it puts them together in order and processes the data.
+
+    When using TCP, two hosts first establish a connection through a 3-way handshake. This handshake process is:
+       1) The first host sends a SYN packet asking to create a new session.
+       2) The receiving host replies with a SYN-ACK packet acknowledging that the session can be created.
+       3) The first host replies with a ACK packet which then opens the session.   
+
+           -If the sending host does not receive the ACK packet within a specified time, it sends another copy of the missing packet.
+           -If the receiving host says that a packet was received out of order and one is missing, the sending host knows to send another copy of the missing packet.
+        
+    UDP sends the packets one at time and the receiver processes them as they come in. If a data packet is dropped along the way, it is not resent
+<h3>11.2.3 Ports and Protocols</h3>
+    protocols are rules to define how devices communicate with each other -- 
+        65,536 Possible Ports, most aren't utilized
+        
+Firewalls use ports to re-route or block traffic
+
+<b>Transfer Protocols</b>
+Port 20 & 21 = FTP File Transfer Protocol - transfer between server and client
+        21 transfers the 'control information'
+        20 transmits the data
+
+Port 22 = ssh Secure Shell - secure file transfer with encryption 
+        most often used to login to a remote computer
+
+Port 23 = Telnet -- no encryption -- replaced by ssh
+
+Port 3389 = RDP Remote Desktop Protocol --- helpful for troubleshooting systems across the network
+
+Port 139 & 137 = NetBIOS - used to share files on local network -- combined with TCP - NetBT
+    139 establishes connection
+    137 transfers data
+
+Port 445 [TCP] = Server Message Block SMB - secure share and transfer data - 
+    CIFS uses SMB on windows based networks
+
+Port 427 = Service Location Protocol SLP
+
+<b>Email Protocols</b>
+Port 25 = SMTP --> send email 
+
+Port 143 = IMAP --> receives email & keeps on server
+
+Port 110 = POP3 --> receives email and removes from server when email is downloaded
+
+<b>Networking Ports</b>
+Port 53 = DNS Domain Name System -> matches host name to IP address
+
+Port 67 & 68 = DHCP Dynamic Host Configuration Protocol 
+       -67 = DHCP request
+       -68 = the DHCP information to the client 
+
+Port 161 & 162 = SNMP Simple Network Management Protocol - monitoring network devices
+        -161 = SNMP manager / on the server 
+        -162 = Agent  
+        
+Port 389 = LDAP Lightweight Directory Access Protocol (Microsoft Active Directory)
+            controls databases of things like usernames, passwords, computer accounts, user info, device info
+
+Port 80 = HTTP Hyper Text Transfer Protocol
+
+Port 443 = HTTPS -> HTTP over SSL = Secure - encrypted with TLS
+<h3>11.2.4 Ports and Protocols Facts</h3>
+<h2>11.3 Client-Side Network Configuration</h2>
+Decimal Numbering System-	The decimal numbering system is the most used number system across the world. Decimal is a base-10 number system that consists of the digits 0,1,2,3,4,5,6,7,8,9.
+Binary Numbering System-	Binary is the number system that computers and most electronic systems use. Because these systems work on electricity, there are only two states, on and off. This is represented using the numbers 1 and 0.
+Hexadecimal Numbering System-	A base-16 number system that consists of the decimal numbers 0-9 and also uses letters A-F to represent values 10-15.
+MAC address-	A 48-bit physical address that is a unique identifier for all network adapters.
+Logical address-	Network addresses assigned by software.
+IPv4 address-	A 32-bit logical address that consists of four decimal numbers separated by a dot that can range from 0 to 255 (ex. 192.168.1.50).
+Subnet mask-	Used to identify which octets in the IPv4 address are the host ID and which are the network ID.
+Default gateway-	Responsible for forwarding data packets to destinations outside of the network.
+IPv4 address class-	  Identifies the range of IP addresses and the default subnet mask used for the range.
+Automatic Private IP Addressing (APIPA)-	A feature that allows a device to automatically assign itself an IP address on the 169.254.0.0 network when a DHCP server or manual configuration is unavailable.
+IPv6 address-	A 128-bit address made up of eight 16-bit blocks.
+Unicast address-	An address assigned to a single interface for the purpose of allowing one host to send and receive data. Packets sent to a unicast address are delivered to the interface identified by that address.
+Multicast address-	An address that represents a dynamic group of hosts. Packets sent to a multicast address are sent to all interfaces identified by that address.
+Anycast address-	A unicast address that is assigned to more than one interface, typically belonging to different hosts.
+<h3>11.3.1 Device Addressing</h3>
+
+    
+
+
+
+
+
+
+
+
+
+
+    <h2>11.4 Services Provided by Network Devices</h2>
+    <h3>11.4.1</h3>
+    
+
+
+
+
+
+
+
+
+
+    <h2>11.5 Wireless Networking</h2>
+    <h3>11.5.1</h3>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2>11.7 Networking Hardware</h2>
+    <h3>11.7.1</h3>
+    
+
+
+
+
+
+
+
+
+
+
+    <h2>11.9 Network Troubleshooting</h2>
+    <h3>11.9.1</h3>
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

@@ -1213,8 +1213,55 @@ Cellular internet- 	A network that uses a cellular phone infrastructure for inte
 
 Wireless internet service provider (WISP)-   Networks that use antennae pointed at a large antenna on land to provide access to the internet.
 <h3>11.7.1 Network Infrastructure</h3>
+    Network Hardware- Wireless ?? get a WAP Wireless Access Point
+                    - Wired - uses a Network Switch 
+                       router usually stays in a network closet
+                    - can connect through a hub - hub forwards to all devices -- too much traffic and easy to intercept 
+                    
+                    - connect multiple devices with a Switch - builds table -> forwards to the correct device
+                    unmanaged switch - plug and play, no configuration   
+                    managed switch - can set up VLAN 
+
+VLANs - 
+
+Firewall- monitors network traffic and blocks via port or traffic type
+
+
+POE - Power over Ethernet -- access points can be in places like the ceiling -->
+        provides power via 3 modes: 
+                                    Mode A = uses data wires to power devices
+                                    Mode B = uses alternate wires to power devices
+                                    Four-Pair = uses all eight wires to deliver data and power
+4 different PoE standards:
+    IEEE 802.3af Standard PoE  - Type 1 PoE - works for VoIP Phones, Sensors 
+                                 power mode: A or B
+                                 Min / Max Power : 12.95 watts / 15.4 watts 
+
+    IEEE 802.3at   PoE+        - Type 2 PoE - Biometric Sensors, Tablets
+                                 power mode: A or B
+                                 Min / Max Power: 25 watts / 30 watts 
+
+    IEEE 802.3bt   PoE++       - Type 3 PoE - Video Conferencing Devices
+                                 power mode: A, B, or four-pair  
+                                 Min / Max Power: 51 watts / 60 watts
     
-    
+    IEEE 802.3bt  Higher-Power - Type 4 PoE - Laptops & TVs
+                                 power mode: four-pair   
+                                 Min / Max Power: 71 watts / 100 watts    
+
+PoE Injector - if your switch doesn't offer PoE you can use a PoE Injector 
+        Active Injectors - conforms to standards
+                            - no power without signal
+                            - protects the device
+        Passive Injector - not standard ** can damage device 
+                            - power regardless of signal
+                            - can damage devices                                  
+
+Software Defined Networking --
+        SDN Software Defined Networking = allow changes remotely and easily monitor network 
+           the remote management of networks is part of modern networking
+<h3>11.7.2 Network Switch Settings</h3>           
+    **** Start Here Tomorrow ****
 
 
 

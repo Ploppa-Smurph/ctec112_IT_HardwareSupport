@@ -1261,26 +1261,256 @@ Software Defined Networking --
         SDN Software Defined Networking = allow changes remotely and easily monitor network 
            the remote management of networks is part of modern networking
 <h3>11.7.2 Network Switch Settings</h3>           
-    **** Start Here Tomorrow ****
+    working with network switches --> more advanced than hub. switches are intelligent devices 
+      build MAC Address Table to route traffic 
 
+    managed switches can be configured -- change ports 
 
+    unmanaged switch -> no configuration options
+    
+    can change the IP address and set static / dynamic in the in switch settings
 
+    Switches normally have 1 default VLAN enabled
+       VLANs are configured in switches
 
+    can edit Port Settings - can click on a port and choose to 'edit'
 
+    can also edit PoE Power Over Ethernet settings 
+<h3>11.7.3 Networking Hardware Facts</h3>
+Wireless access point (WAP)-	The wireless access point provides access to a wireless network.
+Patch panel-	All network ports in a building terminate at a patch panel.
+        -Ethernet cables are punched down and terminated on the backside of the patch panel.
+        -The front of the patch panel consists of RJ-45 ports.
+        -An Ethernet cable provides the connection between a device connected to the network port and the switch.
 
+Router- 	The router is an advanced networking device that connects two networks together. When network traffic needs to leave the internal network, it is sent to the router and then forwarded onto its destination. All external traffic flows through the router.
 
+Hub- 	A hub uses Ethernet cables to connect client devices together.
+        -Hubs broadcast incoming data to all connected devices.
+        -The hub relies on the client devices to determine if the packet is meant for them or not.
+        -This excess network traffic can cause collisions and security issues.
 
+Switch-	A switch also connects client devices together using Ethernet cables. However, switches send data packets only to the intended recipient.
+        -When a new device connects to the switch, the device's MAC address is added to a table.
+        -When a switch processes data packets, the switch reads the packet header to determine the device that the data is meant for and forwards it only to that device.
+    There are two types of switches available:
+        -Managed switches—allow the administrator to login and set options such as VLANs, Quality of Service (QoS), network traffic monitoring, etc.
+        -Unmanaged switches—plug in and start working. There is no option to login and make configuration changes.
 
+Virtual local area network (VLAN)-	A VLAN is a virtual network that is created on a switch by assigning specific ports to be a part of a broadcast domain. This allows a large network to be separated into multiple smaller networks which can increase the efficiency and security of the network.
 
+Firewall-	The firewall is responsible for monitoring all incoming and outgoing network traffic. The firewall blocks or allows the traffic based on the configuration. A firewall can be configured to block data based on the port, type of traffic, or even the content in the data packet.
+
+802.3af-	Type 1	Standard PoE 	A or B	        15.4 watts	12.95 watts	VoIP Phones, sensors, low powered devices
+802.3at-	Type 2	PoE+	        A or B	        30 watts	25 watts	Biometric sensors, tablets
+802.3bt-	Type 3	PoE++	        A, B, or 4-Pair	60 watts	51 watts	Videoconferencing equipment
+802.3bt-	Type 4	Higher-power PoE	4-Pair only	100 watts	71 watts	Laptops, TVs, high power devices
+<h3>11.7.4 Internet Connection Types</h3>
+  Download Speed -> retrieve data vs Upload speed -> how fast you transmit data
+asymetrical vs symetrical connection 
+
+<b>Cable</b> - speeds may vary per area, asymetrical -- during peak hours will be slower because you share bandwidth with everyone 
+
+<b>DSL</b> - multiplexing uses telephone line into 2 bandwidths, 1st bandwidth [< 4kHz] for telephone, 2nd bandwidth = DSL data line [4kHz] 
+                    put filters on the phone line to help with interference, not the fastest internet option [speeds less than 100Mbps]
+            ADSL - asymetric
+            SDSL - up and down the same                
+
+<b>Fiber</b> - incredibly fast, uses light. Symmetrical up and download speed.
+            infrastructure still being built 
+
+<b>Satellite</b> - for users in areas with little to no infrastructure. 
+            great for remote areas - as long as you have clear line of sight to the sky    
+               upload speeds are very slow -- long latency (long time to communicate compared to other service)
+
+<b>Cellular</b> - mobile broadband -- can connect non cell devices with dongles or hot spots 
+            latency can be an issue, upload speeds are slow 
+                main benefit is mobility
+
+<b>WISP Wireless Internet Service Providers</b> - in rural areas, builds wireless mesh network 
+            fiber backbone is installed with a large antenna -- additional atenna are installed that extend the network 
+                as users join then antenna are placed at the user location
+            not as fast all around     
+<h3>11.7.6 Install Network Adapter Lab</h3>
+<h3>11.7.9 Connect to a VPN</h3>
+    right click start -> settings -> network and internet 
+       allow VPN  over metered & while roaming
+       add VPN - windows built in -- give a name
+         enter server name
+         VPN type
+         type of sign in 
+<h3>11.7.10 Quiz Facts</h3>             
+- Routers connect 2 networks -- allows internal network to access the internet
+
+- SDN Software Defined Networking -> remotely manage all network devices
+
+-   2G - 14.4 Kbps
+    3G - 42 Mbps
+    4G - 300 Mbps
+    5G - 10 Gbps - speed 
+
+- Use a USB cable to connect the device to the network through a smartphone.
+        -Use the device's Wi-Fi to connect to the network through a cellular Wi-Fi hotspot.
+        -Use a USB cellular adapter to connect the device directly to the cellular network.
+        -Use an integrated cellular antenna to connect the device directly to the cellular network.
+
+- A geostationary satellite (GEO) is often used as a portable solution for use in cars or trucks to 
+   access a satellite signal when no other signal is available. GEO does require line of sight to the 
+   satellite, which means that the signal can be interrupted by driving through tunnels or in heavily covered canyons.
+ - Low earth orbit (LEO) uses more satellites to cover the same area as GEO satellites (which are closer to the earth)
+   and is frequently used for military reconnaissance, spying, and other imaging applications. Your radio service provider
+    is probably using the more powerful GEO satellite technology.
 <h2>11.9 Network Troubleshooting</h2>
-<h3>11.9.1</h3>
+Localhost-	The IP address 127.0.0.1 (also known as the loopback address) is used to verify that the local TCP-IP protocol is installed and working properly.
+Jitter- 	The variation in the latency of VoIP packets.
+Latency-	The amount of time it takes to send a network request and receive a response back.
+Quality of Service (QoS)-	A feature in some routers and switches that assigns priority to different types of network traffic.
+Port flapping-  	A problem in which a port on the network switch continuously turns off and on three or more times per second for at least 10 seconds.
+<h3>11.9.1 Network Troubleshooting</h3>
+    -- get your baseline: DNS, DHCP, Shared Resources, Connected Devices 
+<b>Troubleshoot Networks</b>>
+    -verify cables are properly in place
+    -verfy switches are powered on and working correctly
+Slow Network Speed - is it 1 device or the entire network?
+            -> if the entire network it could be:
+                        High Latency due to too many Request and Responses
+                        - port flapping - turning on and off rapildy 
+    make certain that the infrastructure can allow the speeds you are expecting.
+          - check for malware
+start at the local device and work your way 
+    1) ping 127.0.0.1 - if that works then TCP/IP is working properly 
+    2) ping your local ip addres 192. -if that works then Network Adapter is working properly
+    3) ping the default gateway  - if this ping works then you can communicate across the local network
+    4) ping a DNS or Webserver outside of your network - if that works                   
 
+CLI 'ipconfig'  --> run that and verify you have a valid IP address and subnet mask  
 
+APIPA = 169.254 = trouble with DHCP 
 
+<b>Wireless Troubleshooting</b>
+succeptable to wireless interference -- microwave also works at 2.45
+    fine tune channel = each channel is 20 mhz
 
+<b>VoIP troubleshooting</b> 
+    QoS - provide optimal service by managing all available bandwidth 
+    high latency - delay in communication 
+    jitter - variation in delay, minor pauses and jumps -- makes hoppy and difficult to understand
+<h3>11.9.2 Troubleshoot Network Connectivity</h3>
+    demo -> 
+       diagnose issues - globe in windows taskbar is crossed out 
+                            if you open a browser then it shows you have no connection 
+          right click network icon -> network and internet settings
+            -try troubleshoot 1st 
 
+cli - ipconfig 
+        see the ip address. 
+    in this ex: APIPA address and no Default Gateway
 
+    ipconfig /all 
 
+    ipconfig /release 
+
+    ipconfig /renew 
+
+    ping a host on the local network -- the default gateway
+      then ping a remote host off local network 
+      
+    1) ping by IP address -- if that works 
+    2) then ping the URL and see if DNS is working
+    3) try connecting with a browser   
+<h3>11.9.4 Fix a Network Connection Lab 01</h3>
+Complete this lab as follows:
+    1)Verify the problem.
+        -From the notification area, right-click the network icon and select Network & Internet settings.
+        -Notice that you are shown that the computer has no connection to the internet.
+        -Select Advanced network settings.
+        -Select More network adapter options to help determine why.
+        -Notice the status for the network connection is network cable unplugged.
+        -Close the window.
+    2)Connect the cable.
+        -From the top left, select Office 1 to work with the computer hardware.
+        -Above the computer, select Back to switch to the back view of the computer.
+        -The computer has a network cable, but the link light is not on.
+        -Select the network cable connected to the computer to see what is connected to the other end.
+        -Notice that in the Selected Component pane, one end is unconnected.
+        -Select the unconnected end and drag it to the network connection on the wall plate.
+    3)Configure the IP addresses.
+        -On the monitor, select Click to view Windows 11 to switch to the operating system view.
+        -The notification area shows a network connection.
+        -Right-click Start and select Settings.
+        -Select Network & internet.
+        -Select Ethernet.
+        -For IP assignment, select Edit.
+        -Use the Edit IP setting drop-down list to select Manual.
+        -For IPv4, slide the button to ON.
+        -Configure the fields as follows:
+            -IP address: valid IP address (such as 192.168.0.27)
+            -Subnet mask: 255.255.255.0
+            -Gateway: 192.168.0.5
+            -Preferred DNS: 163.128.78.93 or 163.128.80.93
+            -Select Save.
+    4)Verify a connection to the internet.
+        -Right-click Start and select Windows Terminal.
+        -Type ping 163.128.78.93 from the PowerShell prompt.
+        -Press Enter.
+<h3>11.9.5 Fix a Network Connection 02 Lab</h3>
+1)From ITAdmin, open the company's help desk ticketing system named Issue Trax.
+    -From the taskbar, select Issue Trax.
+    -Maximize the window for better viewing.
+2)Create a new ticket requesting to document Joshua's issue.
+    -Select New.
+    -Configure the ticket as follows:
+        -Summary: Cannot connect to the network
+        -Description: Came in this morning and cannot access any network devices or the internet
+        -Contact Info: Joshua - ext. 234
+        -Device Info: Office2 Win11
+        -Priority: High
+        -Assignee: Joshua Anderson
+        -Due Date: Today
+        -Category: Network
+        -Select Save.
+3)From Office2, replicate the problem.
+    -From the top left, select Floor 1 Overview.
+    -Under Office 2, select Office2.
+    -In the notification area, hover the mouse over the network icon.
+        -Notice that the computer is not connected to the network.
+    -Right-click Start and select Windows Terminal (Admin).
+    -At the PowerShell prompt, type ipconfig and press Enter to view information about the network adapter.
+        -Notice that the media is disconnected.
+4)Verify the physical configuration of the computer.
+    -From the top left, select Office 2 to access the hardware.
+    -Above the desktop computer, select Back to switch to the back view of the computer.
+    -Select the network cable.
+    -Make sure that the other end of the network cable is plugged into the wall outlet.
+        -Because the network cable is connected to the computer and the wall outlet, it appears that the cable might be faulty.
+5)Connect to the network using a known good networking cable.
+    -On the back of the computer, drag the RJ45 Connector to the Workspace to disconnect it.
+    -Drag the RJ45 connector from the wall outlet to the Workspace.
+    -Under Shelf, expand Cables and select the CAT6a Cable, RJ45 (this type of cable supports Gigabit speed).
+    -From the Selected Component pane:
+        -Drag the RJ45 Shielded Connector to the network card on the computer.
+        -Drag the unconnected RJ45 Shielded Connector to the network connection on the wall outlet.
+6)Verify the connection.
+    -On the Office2 monitor, select Click to view Windows 11 to switch to the operating system view.
+    -In the notification area, hover the mouse over the network icon.
+    -Notice that the computer has internet access.
+    -At the PowerShell prompt, type ipconfig and press Enter to view information about the network adapter.
+    -Notice that the card is now assigned an IP address.
+    -In the notification area, right-click the network icon and select Network & Internet settings.
+    -Verify the connection to the network.
+7)Add a comment to the ticket and close the ticket.
+    -From the top left, select Floor 1 Overview.
+    Under IT Administration, select ITAdmin.
+    -Open the ticket you created for this issue, and in the New Comment field, enter a comment of your choice to indicate that the computer now has access to the network and internet.
+        -Select + (plus sign) to add the comment.
+    -From the top of the ticket, select Closed.
+    -Close Issue Trax.
+<h3>11.9.6 Quiz Facts</h3>
+- To get the IP address from a hostname, use the ping command.
+
+- The default gateway value is used to send packets to other subnets. If the value is incorrect, the packets will not be sent to the correct router.
+
+-
 </pre>
 </body>
 </html>

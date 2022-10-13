@@ -257,7 +257,963 @@ Unicast address-	An address assigned to a single interface for the purpose of al
 Multicast address-	An address that represents a dynamic group of hosts. Packets sent to a multicast address are sent to all interfaces identified by that address.
 Anycast address-	A unicast address that is assigned to more than one interface, typically belonging to different hosts.
 <h3>11.3.1 Device Addressing</h3>
+  the numbering systems used for networks: 
+    Decimal - 0-9 - base 10 
+        ex: 6,789 = six-thousand seven-hundred eighty-nine
+    Binary - 0 & 1 - base 2
+        ex: 01100101 = one-hundred ninety-seven
+    Hexadecimal - 0-F - base 16
+        ex: AF0821 = 11,470,881 in decimal 
 
+an 8-bit binary code = 2<sup>8</sup> = 256 [0-255]
+
+each hexadecimal character = 4-bits = nibble 
+        a common use of hex is html color codes. 
+        also the MAC address
+
+MAC address - Physical Address - globally unique
+    1st half is manufacturer id
+    2nd half is unique device id - randomly generated
+
+Logical address - Logical Addresss - assigned by software 
+    IPv4 = 4 octets 
+        ex: 192.168.5.42 
+
+ARP Address Resolution Protocol - 
+
+Switches build tables to memorizes packet travel routes
+<h3>11.3.2 IPv4 Addressing</h3>
+    unique layer 3 logical address (Layer 3 on the OSI model)
+
+IPv4 Configuration - must be a unique address
+        IPv4 address: 4 octets -- we see it as a decimal --
+        Subnet Mask: lets us know which part is network and which part is host -- 0 parts are host
+        Default Gateway: forwards data to desitnations outside of the network
+        DNS Server Address: 
+
+Static - manual input, won't change, prone to input error -- best used for servers, printers, routers, etc.
+Dynamic - DHCP Dynamic Host Configuration Protocol 
+
+IPv4 Classes:  Class A /24 - IP starts with 0-127, subnet mask 255.0.0.0 -- allows for 16.8 million private IP addresses
+               Class B /16 - starts with 128-191, subnet mask 255.255.0.0 -- allows for 1 million private addresses 
+               Class C /8  - starts with 192-223, subnet mask 255.255.255.0 -- allows for 65,000 private addresses
+                 Class D = starts with 224-239, multicast
+                 Class E = starts with 240-255, expiremental 
+
+IP addressess are assigned in blocks by the IANA (Internet Assigned Numbers Authority)
+
+Private IP address range -- defined in the IETFM RFC1918
+        class a = 10.0.0.0 - 10.255.255.255 == 16,777,216 million addresses
+        class b = 172.16.0.0 - 172.31.255.255 == 1 million addressess 
+        class c = 192.168.0.0 - 192.168.255.255 == 65k IP addresses 
+        class d = 224-239.  mulitcast 
+        class e = 240-255, expiremental 
+        
+Special IPv4 Addressess:  APIPA 169 -- auto configured
+                          Local Host (Loopback) = 127.0.0.1 -- ping it to check if you can receive packets
+                          Broadcast = *.*.*.255 (last address in the network range)
+                          Network = *.*.*.0 (first address in the network range)
+<h3>11.3.3 IP Address Facts</h3>
+An IPv4 address is: 
+    -A 32-bit address that consists of four decimal numbers (ranging from 0-255), each separated by a dot (e.g., 192.168.1.50).
+        -Each decimal number is known as an octet, as it consists of eight 1's and 0's.
+        -The decimal values range from 0-255 because there are 256 (27) combinations of 1's and 0's
+    -Composed of two components:
+        -The host ID which is a unique value for each host
+        -The network ID which identifies the network the host is on. All hosts on the network will have the same network ID
+
+Subnet mask-	The subnet mask also consists of four octets. Each octet is usually either a 0 or 255, but not always. The subnet mask is used to identify the octets in the IPv4 address that are the host ID and those that are the network ID.
+                  --255 represents the network ID and 0 represents the host ID. For example:
+                
+                  The subnet mask 255.255.0.0 indicates that the first two octets in the IPv4 address are the network ID and the last two octets are the host ID.
+
+Default gateway-	The default gateway is responsible for forwarding data packets to destinations outside of the network.
+        -For example, when a host requests a internet site, the request is sent to the gateway device which then forwards the request to the appropriate destination. When the requested data comes back, the gateway sends it to the requesting host device.
+        -The default gateway is typically a router that sits on the edge of the network.
+    The IPv4 configuration specifies the address of the default gateway.
+
+DNS server address-	On a network, including the internet, computers use IP addresses to identify each other and specify where data should go. However, it is much easier for users to use hostnames to identify websites or other network devices.
+        The DNS server is responsible converting hostnames to IP addresses. Part of the IPv4 configuration is specifying the address of the DNS server.
+
+
+    -The Internet Assigned Numbers Authority (IANA) manages the assignment of IP addresses on the internet. IANA is operated by the Internet Corporation for Assigned Names and Numbers (ICANN).
+    -IANA allocates blocks of IP addresses to Regional Internet Registries (RIRs). An RIR has authority over IP addresses in a specific region of the world.
+    -An RIR assigns blocks of addresses to internet service providers (ISPs).
+    -An ISP assigns one or more IP addresses to individual computers or organizations connected to the internet.
+
+    --Public IP addresses are those that are used on the internet. These are typically assigned by the ISP.
+    --Private IP addresses are used on internal networks only and are not used on the internet.
+            -When a device on the internal network accesses the internet, that data traffic is sent using the public IP address.
+            -Because private IP addresses are never used on the internet, users in one private network can have the same IP address as users in another private network.   
+<h3>11.3.4 IPv6</h3>
+        the IPv4 pool has been exhausted -- IPv6 is the more modern standard.
+128-bit addresses, split into 8 16-bit blocks
+    each block in the IPv6 address is composed of 4 hexadecimal #s, each block is seperated by a colon
+
+ex: 2001:0f56:0000:0000:c429:0008:0000:02d5
+
+IPv6 has 106 trillion-trillion (Undecillion??) addressess 
+
+simplify -- replace spans of 0000 blocks with :: -- Address Compression (replacing the blocks of 0s with ::)
+   ex: 2001:0f56::c429:0008:0000:02d5
+
+        we can also remove 'leading zeros' ::
+   ex: 2001:f56::c429:8:0:2d5 
+   
+IPv6 Components -- split in the middle - prefix address (network) & interface id (host)
+    the prefix address ex: 2001:0f56:0000:0000 
+            is split into 2 additional items -- the first 48bits (1st 3) = Site Prefix = 2001:0f56:0000 
+                                                the next 16bits are the subnet id = 0000 (in this example)
+
+    the Interface ID ex: C429:0008:0000:02d5 -- the entire 64-bits at the end of the address are a unique identifier for the device 
+    
+    you can generate the Interface ID using the MAC addressess -- this is known as a Modified EUI 64 Interface ID
+
+Unicast address -- reserved - Link-Local Address FE80::/10 prefix can start with FE8, FE9, FEA, FEB --> similar to APIPA   
+                                    link-local addresses are used for: Auto Address Config
+                                                                        Neighbor Discovery
+                                                                        Subnets with NO Routers
+                                                    
+Unique Local Address -- private - FC00::/7 prefix, starts with either FC or FD
+        -- local network addressess
+    
+Multicast = use an FF00::/8 prefix
+                local multicast uses: FF02::/16 prefix 
+
+Anycast = unicast that is assigned to multiple devices -- ex: Root DNS Servers
+
+Loopback address = 0000:0000:0000:0000:0000:0000:0000:0001/128   or ::1/128
+            not assigned to any interface - used for testing and troubleshooting service running between the same host
+<h3>11.3.5 IPv6 Facts</h3>
+Prefix-	The first 64-bits make up the prefix.
+    -The prefix can be divided into various parts that identify things such as geographic region, the ISP, the network, and the subnet.
+        -The first 48-bits of the address define the site prefix. The site prefix defines the location of the address and is assigned by the local ISP.
+        -The next 16-bits make up the subnet ID. This defines the network the device is connected to.
+    -CIDR notation can be used to indicate the prefix-length. As with an IPv4 address, this shows which portion of the address used for the prefix (network address).
+        -To indicate the prefix length, add a slash (/) followed by the prefix length.
+        -Full quartets with trailing 0s in the prefix address can be omitted (e.g., 2001:0DB8:4898:DAFC::/64).
+    -Because addresses can be allocated based on physical location, the prefix generally identifies the location of the host. The prefix is often referred to as the global routing prefix.
+
+Interface ID-	The last 64-bits in the address is the interface ID. This is a unique identifier for each device, similar to a MAC address.
+        -Addresses are assigned to interfaces (network connections), not to the host. Technically, the interface ID is not a host address, but is often referred to as the host address.
+        -Interface IDs must be unique within a subnet, but the same interface ID can exist on multiple subnets.
+    To ensure that the interface ID is unique for every host on the network, IPv6 uses the Extended Unique Identifier 64 (EUI-64) format. Following are some details of the EUI-64 format:
+        -Since each device is hard-wired with a unique 48-bit hardware address called the MAC address, the EUI-64 format uses it to generate a unique interface ID.
+    -The EUI-64 format:
+        -Converts the MAC address to binary.
+        -Flips the 7th bit from the left (from 1 to 0 or 0 to 1). This bit is called the universal/local (U/L) bit.
+        -Inserts the 16-bit hexadecimal value FFFE in the middle.
+
+            -For example, the address for a host with a MAC address of 20-0C-FB-BC-A0-07 would start with the following EUI-64 interface ID: 200C:FBFF:FEBC:A007
+    The interface ID can also be generated using a special algorithm that generates a completely randomized ID. This guarantees that each device will have a unique ID.
+<h3>11.3.6 Configure TCP/IP Properties</h3>
+    demo for networking
+
+right click start menu -> device manager -> network adapter
+
+    concerned with wired ethernet adapter ->
+    right click ethernet adapter & choose propetied -> device status 
+
+<b>Hostname </b>
+right-click start and choose system -> can rename PC (host) in the upper area by clicking 'Rename this PC'
+
+under system -> settings we can go to 'Network and Internet'
+
+<b>Network and Internet</b>
+    shows DHCP information -- can look at link speed, also
+ 
+    **google's primary dns is 8.8.8.8 
+<b>ipconfig</b>
+
+in command prompt $ ipconfig /all   -- shows information for ethernet adapter
+
+<h3>11.3.9 quiz facts to remeber</h3>
+- default address range used by APIPA is 169.254.0.1 to 169.254.255.254
+
+- Address Resolution Protocol (ARP) is used to match a device's IP address to its MAC address. Some network devices, such as switches, 
+   will build tables to match MAC addresses with IP addresses in order to always know where to send packets to. When a host wants 
+   to send some data, it uses ARP to send a broadcast message out on the network, requesting that the host with a specific IP address respond
+    with its MAC address. When the sending host gets the response, it can then match up the MAC address and IP address.
+
+- The first octet of a Class A address is in the range of 1 to 126. 
+  The first octet of a Class B address is in the range of 128 to 191. 
+  The first octet of a Class C address is in the range of 192 to 223.    
+
+- 127.0.0.1 is the loopback address for any device. This special address means "this host." If you ping the loopback address, the TCP/IP configuration is tested.
+   A successful test means that TCP/IP is correctly configured on the host.
+ 
+- The first half (first six digits) of a MAC address is assigned to each manufacturer by the Institute of Electrical and Electronic Engineers (IEEE). 
+  The rest of the MAC address consists of a unique, randomly generated value.   
+
+- You can use the Domain Name System (DNS) to get the IP address from a given hostname. You can also use the local hosts file to map hostnames to IP addresses. 
+  On Windows systems, this file is located in C:\Windows\system32\drivers\etc\.  
+
+- Class A networks use a default subnet mask of 255.0.0.0 and have numbers between 0 and 126 in their first octet. Class B networks use a default subnet mask 
+  of 255.255.0.0 and have numbers between 128 and 191 as their first octet. Class C networks use a default subnet mask of 255.255.255.0 and have numbers 
+  between 192 and 223 as their first octet. In this question, the IP addresses that fall in the Class B IP address range are 191.168.2.15, 129.0.0.1, and 168.16.5.1.  
+
+- An IPv6 address is a 128-bit binary number that uses the first 64 bits as the address prefix and the last 64 bits of the address as the interface ID. The 128-bit binary
+  number is organized into 32 hexadecimal numbers that are organized further into eight quartets. The last four quartets correspond with the last 64 bits of the IPv6 address.
+
+- An IPv6 IP address is a 128-bit address listed as eight 16-bit hexadecimal sections. Leading 0s can be omitted in each section. 6384:1319:7700:7631:446A:5511:8940:2552 is a 
+  valid IPv6 IP address. A single set of all-zero sections can be abbreviated with two colons (::). 141::15:0:0:1 would also be a valid way of writing that address.
+
+- IP version 6 addresses are made up of 32 hexadecimal numbers organized into eight quartets. The quartets are separated by colons. An IPv6 address is a 128-bit number (128 binary digits).
+   IP version 4 addresses use decimal numbers organized into four octets and separated by periods.  
+<h2>11.4 Services Provided by Network Devices</h2>
+Domain Name System- 	Translates hostnames to IP addresses
+Fully Qualified Domain Name (FQDN)- 	A domain name that spells out each level of the hierarchy.
+Forward lookup zone-	DNS record that matches a hostname to its IP address
+Reverse lookup zone-	DNS record that matches a IP address to its hostname
+Dynamic Host Configuration Protocol (DHCP)- 	Automatically assigns the IP configuration when a device connects to the network
+Simple Mail Transfer Protocol (SMTP)- 	Used for outgoing emails and operates on port 25
+Post Office Protocol version 3 (POP3)- 	Used for incoming emails and operates on port 110. Emails are downloaded to the local computer and then removed from the email server.
+Internet Message Access Protocol (IMAP)- 	Used for incoming emails and operates on port 143. Emails are kept on the email server allowing users to access their email from multiple devices.
+Load balancer- 	Internet appliance that monitors servers and distributes network traffic so one server does not get overwhelmed
+Spam gateway-	Internet appliance that monitors incoming and outgoing emails to reduce the amount of spam affecting the network.
+Proxy server-	An internet appliance typically configured to monitor all incoming and outgoing network traffic and determines if the traffic is allowed or not.
+Unified Threat Management (UTM) Appliance-	 The unified threat management (UTM) internet appliance combines multiple functions into one single device.
+Internet of Things (IoT)-	IoT is a system of connected computing devices and other things that use unique identifiers and the ability to send data over a network without requiring human interaction.
+Internet of Everything (IoE)-	IoE is another name for IoT.
+Embedded System-	An embedded system is a complete computer system that is designed to perform a specific dedicated task.
+Application-specific integrated circuit (ASIC)- 	The application-specific integrated circuit chip is created to perform a single function.
+System-on-chip (SoC)-	A System-on-chip incorporates all components on the board
+Field-Programmable Gate Array (FPGA)-	A field-programmable gate array is physically setup like a ASIC or SoC, but the programming is configured by the end-user.
+Industrial Control Systems (ICS)-	Industrial control systems (ICSs) handle the workflow and automation process for all sorts of machinery.
+Programmable logic controller (PLC)- 	PLC is a specialized controller that can be programmed to perform specific tasks. Multiple PLCs can be combined and configured to work together to carry out complex tasks.
+Supervisory control and data acquisition (SCADA)-	SCADA controllers are used to monitor and control PLC systems. They gather data and adjust the system based on the data acquired from sensors.
+Human-machine interface (HMI)-	The HMI can be either a touch-screen control panel or software running on a typical computer system. The HMI allows the operator to make configuration changes in the ICS.
+Distributed control system (DCS)-	A DCS is a customized all-in-one package that contains the needed PLCs, SCADA controller, and HMI.
+Modbus- 	Modbus is a special network protocol that controller systems use to communicate with each other.
+<h3>11.4.1 Server Roles</h3>
+  server is a computer system that manages access to network resources.
+
+Server Roles:  - DNS
+               - DHCP
+               - MAIL
+               
+enable the server role - needs server OS -- enable the role in the
+        in windows you enable the role and windows will download the necessary resources
+
+File Sharing 
+Print sharing
+Web server - for internet or intranet windows uses iis; linux uses apache
+
+server security roles : Authentication - who user is 
+                        Authorization - access / permissions 
+                        Monitoring - user activity
+                        System Logs - Capture events 
+                        
+configure server as DNS server - turns the ip to the host name (FQDN)
+    hierarchical naming system = organized with a root that other levels branch from
+     ex: www.testout.com -- first is the root level 
+                    .com -> Top-Level Domain (TLDs)
+                    .testout -> Domain Name 
+                    www -> Host Name (internal might be server 1)
+
+there are 13 Root level servers?? 
+  and over 1500 TLDs -- .edu, .org, .gov, .com, .biz, .tv are just a few
+  
+DNS Records A -> host to IPv4 address
+          AAAA -> host to IPv6 address                
+
+DHCP role - auto assign ip address from the DHCP scope 
+    the scope defines the address range available and subnet mask
+      specify exclusion and reservation ip addresses -- exclusions block range from being used
+                                                     -- reservation simply reserves a number or group of number for items by MAC address
+    DHCP lease time -- long if it doesnt change, short for a place like a coffee shop
+
+Email server -> SMTP - send mail - port 25
+                IMAP - receive and keep email on server - port 143
+                POP3 - receive email and erase from server when downloaded - port 110
+
+spam and malware protections - Email Authentication
+   -- DKIM DomainKeys Identified Mail - verifies sender domain              
+   -- SPF Sender Policy Framework - verifies the IP address (a step further than DKIM)
+   -- DMARC Domain-based Message Authentication, Reporting, and Conformance - combines DKIM and SPF
+<h3>11.4.2 Server Role Facts</h3>     
+Root level-	 The root level is the highest level in the DNS hierarchy. The DNS root level is represented by a period at the end of the of the FQDN. When typing the FQDN into a web browser, the period is typically not included. The period is mainly used when defining DNS records on the server.
+Top-level domain-	The top-level domain (TLD) names have extensions such as com, edu, gov, org, etc.
+Domain name-	The domain name is unique to each organization. The DNS domain is referred to as distributed because this portion is unique to each organization or group. Each organization is responsible for maintaining its own namespace.
+Hostname-	 This is the name of specific hosts on the network.
+    -On an internal network, an example of a hostname could be server1 or server2.
+    -On the internet, this is typically www. On a webserver, www is the name of the root folder that all website files are stored in.
+
+A DNS zone is defined using a DNS zone file.
+
+    -The DNS zone file is a text document stored on each server and defines the DNS zone and how it should function.
+    -Each DNS zone must have its own zone file.
+    -When defining a DNS zone, you must specify a forward lookup zone or a reverse lookup zone.
+        -A forward lookup zone matches the hostname to the IP address.
+        -A reverse lookup zone matches the IP address to the hostname.
+    -These zones need to be defined because limitations in DNS do not allow this to happen automatically.
+
+A (host address)-	Maps an IPv4 (32-bit) DNS host name to an IP address. This is the most common resource record type.
+AAAA (quad-A)-	 Maps an IPv6 (128-bit) DNS host name to an IP address.
+Pointer (PTR)-  Maps an IP address to a host name (by pointing to an A record).
+Canonical Name (CNAME)-	 Provides alternate names (or aliases) to hosts that already have a host record. For example:
+        sales.testout can be mapped to the IP address of testout.com
+    If a single A record is used with multiple CNAME records, only the A record needs to be modified when the IP address changes.
+Mail Exchange (MX)-  Identifies servers used for handling email
+TXT-	Stores plaintext notes in a DNS zone. This record type can be used to help prevent email spam and verify domain ownership.
+Start of Authority (SOA)-	Stores all the administration information about the DNS zone. For example, the administrator's email address, TTL values, primary name server, etc., is recorded in this file.
+        SOA records are very important in the zone transfer process.
+Name Server (NS)-	Defines the authoritative server for a specific domain. This record identifies all name servers that can perform name resolution for the zone.
+    Typically, there is an entry for the primary server and all secondary servers for the zone (all authoritative DNS servers).
+DNS Service (SRV)-  Defines a host and port for a specific service such as voice over IP (VoIP). This allows clients to find services through DNS. Windows automatically creates these records as needed. 
+
+DHCP - 
+
+IP range-	The IP range defines the range of IP addresses that the DHCP server can assign. When a new device connects to the network, the DHCP server will assign the next available address.
+
+    When you define the IP range, be aware that you can assign:
+        -All available addresses in the network.
+        -Specific ranges (e.g., 192.168.5.50 - 192.168.5.100). Specifying a limited number of addresses can help limit the number of connections to the network.
+
+Subnet mask- 	The subnet mask defines the network ID and host ID. This must be defined.
+
+Exclusions-	 Exclusions are IP addresses that the DHCP server will not assign.
+        -These addresses are typically used for devices such as servers, printers, routers, or other network devices that must have a static IP address.
+        -These IP addresses must be manually configured on each device.
+            *It's important to remember that the exclusion addresses must fall within the configured IP range.
+
+Reservations-	Reservation IP addresses will also not be assigned by the DHCP server.
+        -Instead of manually configuring the IP information on each device that needs a static IP, you can assign reservations on the DHCP server using the device's MAC address.
+        -Whenever that device connects to the network, the DHCP server assigns it the reserved IP configuration.
+
+DHCP lease time-	An IP configuration is assigned to a device for a specified amount of time. This is the DHCP lease. Keep in mind:
+    -While a lease is active, that IP address cannot be reassigned, even if the device disconnects from the network.
+    -When the lease is half-way over, the device attempts to renew the lease if it's still connected to the network.
+    -A lease can be set for a few hours, days, weeks, or months.
+    -If the device stays connected to the network, you should probably set the lease to last for days. However, if clients are connecting to a guest network and are coming and going, you should probably set the lease to a short time so available addresses aren't tied up.
+
+Default gateway-	The default gateway defines where data packets that are leaving the network (e.g., internet packets), should go.
+
+DNS server-	 If you are using a specific DNS server, define it in the scope.
+
+WINS server-	Most networks do not use WINS anymore, but if it is needed, you can define it in the DHCP scope.
+
+<b>Mail Serverss</b>
+Simple Mail Transfer Protocol (SMTP) - Used for outgoing emails and operates on port 25.
+Post Office Protocol version 3 (POP3) - Used for incoming emails and operates on port 110. Emails are downloaded to the local computer and then removed from the email server.
+Internet Message Access Protocol (IMAP) - Used for incoming emails and operates on port 143. Emails are kept on the email server, allowing users to access their email from multiple devices.
+
+Spam Protections --
+
+DomainKeys Identified Mail (DKIM)-	DKIM protects against spoofed emails by verifying the sender's domain address.
+    -A spoofed email looks like it comes from a legitimate user, but in fact comes from somewhere else.
+    -DKIM creates a DNS TXT file on the sender's email server. The recipient can check the DNS record to verify the sender's domain is legitimate.
+    -DKIM also creates a pair of encryption keys, one private key and one public key.
+        -The public key is sent along with the email to digitally sign the email.
+        -The private key is kept on the email server, so the receiver is able validate the sender's identity.
+
+Sender Policy Frameworks (SPF)-  SPF is also used to protect against spoofed emails. Instead of using encryption keys, a SPF record is created in the sender's DNS server. The SPF contains:
+    -The SPF version being used.
+    -The IPs that are authorized to send emails for the domain.
+    -Any other third-party domains that are authorized to send emails for the domain.
+    -An all tag at the end which indicates the policy that should be applied when the receiving server detects a server that is not part of the SPF record.
+
+    The recipient can check the SPF record and verify the IP address of the domain the email comes from. If the IP address matches the DNS records, the email is marked as safe. If the IP address does not match the DNS records, the email is flagged and blocked.
+
+Domain-based Message Authentication, Reporting, and Conformance (DMARC)-	DMARC combines the protections of both DKIM and SPF to protect users from malicious emails. DKIM:
+    -Verifies the email sender.
+    -Tells the recipient what to do if neither authentication method passes.
+    -Allows the recipient to tell the sender about messages that pass or fail DMARC authentication.
+<h3>11.4.3 Explore Server Roles</h3>
+ windows server OS manages features and roles, such as email, file sharing and multi-device connectivity
+
+ local server role is the system running (os on hardware of main server)
+        -- look at event logs -- system logs (sys logs) -> inform of changes 
+
+AD DS -> Active Directory
+DHCP -> manage DHCP
+DNS ->
+Files and Storage Services ->
+IIS -> 
+Print Services ->
+
+at the top right in windows 'server manager' - manage 
+                                               tools 
+                                               
+in tools we can: look at active directory
+                    add dhcp scopes                                                
+                    manage dns 
+<h3>11.4.4 Configure DHCP on a Windows Server</h3>
+    Dynamic Host Configuration Protocol -- setup on windows server 
+
+    1st - install the DHCP role
+        for this example - role based feature is fine -> next 
+        in this example we are only installing it on this server 
+          -- a window will pop up if anything needs to be added 
+        pretty much next through everything in this example 
+    2nd post-install wizard 
+          next and commit 
+    3rd - tools (upper right) -> DHCP
+        example only has IPv4 enabled -- right click and 'New Scope' in order to add scope
+          name the scope 
+          enter start ip address -> end ip address
+          we are going with the rest of the defaults -> next through all of these 
+          Default gateway - add 
+          DNS Server Domain Name - add if necessary
+          WINS -- is becoming obselete
+    4th - addresses, reservations - scope options, policies
+<h3>11.4.5 Configure DNS on a Windows Server</h3>      
+Domain Name System - translates IP to URL address
+
+DNS Zones : Forward - resolves a hostname into an IP address
+            Reverse - resolves an IP into hostname 
+
+    right click forward and 'new zone' -> primary or secondary 
+                                            secondary is a write protected copy of the primary for fault tolerance 
+                            gave zone a name -> next 
+                               use default filename -> next              
+                            in this ex: we want Dynamic Updates -> next
+                            then finish 
+    right click reverse lookup and 'new zone' -> primary -> next
+                            ipv4 zone -> next
+                            you need to enter the IP address in the network ID zone
+                                it fills the reverse lookup zone information (looks like it's backwards the video says??)
+                            click next
+                            allow the default file name, also -> click next
+                            choose Dynamic updates -> next
+                            Finish
+Right click the forward lookup zone - whatever the name is of the forward lookup zone is -> 'New Host (A or AAAA)' 
+                            type in the server's IP address -> add host 
+                            ok -> done 
+  now expand and look in reverse lookup zone - right click on the reverse zone we created and -> 'New Pointer PTR'
+                            add the Host IP Address  -> then browse to and find which Host in the 'forward lookup zone' that IP resolves to 
+                               choose the correct host 'ok' -> 'ok' again
+** easier to choose the 'create a PTR record' when you create the forward lookup zone
+<h3>11.4.6 Internet Appliances</h3> embedded systems = independent unit 
+                                    software system = software running on device
+<b>Load Balancers</b> - keep servers from being overwhelmed - manages traffic so none are overworked  
+                            network layer load balancer: work by reading packet headers and determine flow for traffic
+                                    common algorithms: Round Robin - server handle 1 after the other in the same order
+                                                      Weighted Round Robin - more powerful server will be assigned more traffic than the other servers
+                                                      Least connection - looks at which server has the least connections and assigns to that server 
+                                                      Weighted Least Connection -- more powerful server will be assigned priority
+                                                      Source IP Hash - combines source & destination ip and creates hash key -> assigns hash to server and that server will handle all traffic regarding this request 
+                            application layer load balancer: Distributes traffic based on packet contents (HTTP/HTTPS header & session cookies)
+                                                             Tracks responses from server 
+                                                             Less guesswork involved    
+                                    common algorithms: LPR Least Pending Request - monitors pending request                           
+
+<b>Spam Gateways</b> - monitor incoming addressess - if email is on block list then they will be deleted
+                                            can use DMARC
+                       monitor outgoing email - check if email was hacked and sent
+<b>Proxy Servers</b> - control network traffic - proxy and annonymize users -- and web caching 
+<b>Unified Threat Management (UTM) Systems</b> 
+            - Firewall - monitors incoming and outgoing traffic 
+            - IDS / IPS - Intrusion Prevention Systems - monitors for suspicious packets 
+            - Anti-malware - viruses, spyware, ransomware
+            - Content filtering - block website based on content they contain 
+<h3>11.4.7 Internet Appliance Facts</h3>  
+Round robin-	The most basic algorithm. Using this algorithm, the servers handle network requests in sequential order. The load balancer does not monitor each server's current load, as it assumes the servers can handle each request in the same amount of time.
+            This can still lead to a server getting overwhelmed.
+
+Weighted round robin-	This algorithm works the same as the round robin, but takes the server's power into consideration. A more powerful server is sent more traffic than less powerful servers.
+
+Least connections-	The least connections algorithm looks at the active connections each server is handling and sends the network traffic to the server that currently has the lowest number of connections. This algorithm:
+    Treats each network request equally.
+        -Does not take into account that some requests require more time.
+        -Does not take into account the power of each server.
+    For example, if a request comes in that will take a long time to process, the load balancer can't take this into consideration. It might direct that traffic to the next server in line, but that server might already be dealing with another request. This can cause that server to get backed up and slow down the network.
+
+Weighted least connections-	 This algorithm distributes traffic based on the active connections and the processing power of each server.
+
+Source IP hash-  This algorithm creates a hash key based on the source and destination IP addresses. The hash key is assigned to a server and all requests for the remainder of the active session are handled by that same server.      
+
+Firewall-	The firewall is responsible for monitoring and controlling all incoming and outgoing traffic. The firewall controls the flow of data based on rules that have been configured by the network administrator.
+    Most firewalls are configured to detect the type of traffic; the source and destination addresses; and ports.
+
+Intrusion prevention system (IPS)-	The intrusion prevention system monitors all network traffic looking for anything out of the ordinary. When malicious or suspicious packets are detected, the IPS blocks the packets and notifies the network security team so further action can be taken.
+
+Anti-malware-	Many UTM appliances use anti-malware software to detect and prevent malware from infecting the network.
+    Malware can include viruses, spyware, ransomware, and other malicious software. It should be blocked from the network. Malware programs can devastate a network by destroying, stealing, or blocking access to critical data and infrastructure.
+
+Content filtering-	Similar to the proxy server, the UTM can monitor HTTP requests and block unauthorized web sites. The rules are configured by the network administrator.
+<h3>11.4.8 IoT Internet of Things</h3>
+IoT - system of connected computing devices - send information without human interaction 
+    also IoE Internet of Everything because it is everywhere these days
+
+IoT Systems - 4 main systems that work together: the device - contains sensors that collect data 
+                                                 gateway system - comunicates between device and sends data to cloud 
+                                                 data storage - in the cloud the data is processed and analyzed and relayed to the application server
+                                                 remote control - data is relayed to the user interface, email, text -> allow you to do something on a remote app to control the security camera, etc... 
+
+IoT architecture - defines how it works and the process each device goes through - 5 layers:
+        -Edge Technology - all hardware part in IoT device -- all sensors / actuators 
+        -Access Gateway - wear all data is gathered and compressed and converted to digital form - takes care of message routing, ID and subscription  
+        -Internet - main bridge between 2 endpoints - connects to the cloud, to other systems, the gateway... 
+        -Middleware - covers process that happen in the cloud - device information discovery 
+        -Application - responsible for delivering end data to user
+
+IoT protocols - wi-fi - wireless connection
+                bluetooth low energy BLE - used in smart device
+                Zigbee - open, max 60 feet, unlimited hops, 2.4GHz -- may have conflict with other devices at 2.4GHz range   
+                Z-Wave - closed, goes 250 ft, but only 4 hops max, 908.42 MHz -- no major conflicts with other devices
+<h3>11.4.9 Smart Devices</h3>   
+    door locks, speakers, lights, etc...
+
+amazon echo -- "Alexa" - can be used to control other smart devices 
+    echo app on android phone -> 
+        settings - account -> use voice 
+    alexa voice responses -> 
+        amazon household 
+    alexa history 
+    alexa privacy 
+    can work with other devices --> connect to other echo devices 
+    can connect to smart plugs 
+        connect to smart lights 
+    create routine to turn lights on and off 
+<h3>11.4.10 IoT Facts</h3>    
+<b>Systems</b> 
+Devices	IoT-  devices are built with sensors that capture data. These sensors can be included in cameras, GPS systems, temperature reading equipment, and heart monitoring equipment.
+    The sensors in the device collect data and send it to the cloud.
+
+Gateway system-	In order to send data to the cloud, IoT devices need a connection. The gateway acts as the bridge between the device and the cloud.
+
+Data storage	Once the data reaches the cloud, it is processed and analyzed by software. Examples include the temperature reading is checked, trespassers are detected on the security camera video feed, and location is determined on a GPS device.
+    After the received data is processed completely, the result or conclusion is sent to the device application server and interface.
+
+Remote control	App notifications, emails, and text messages make the information gathered by the device available to the user. Action by the device can be started as follows:
+    -Predefined rules setup by the user cause the device to take action automatically.
+    -A user uses an app or other interface to start an action. The user may or may not be prompted by the device.
+<b>Architecture</b>
+Edge technology-	The edge technology layer includes all the hardware parts in the IoT system such as sensors, RFID tags, readers, etc. This sensor hardware collects the data for the IoT device.
+    These sensors can convert the sensory information they capture into data for analysis.
+
+Access gateway-	 The access gateway layer is where all the data gathered at the edge layer is collected and compressed to an optimal size for analysis.
+    This is also the point when the data is converted to a digital form. In addition, this layer takes care of message routing, message identification, and subscribing.
+
+Internet-	The internet layer is the main bridge between two endpoints in an IoT system. It connects devices to other devices, the cloud, the gateway, and backend data sharing.
+    The internet layer sends the data to the middleware layer. Some systems may conduct advanced analytics and pre-processing during this stage.
+
+Middleware-  The middleware layer includes the processes that happen in the cloud such as:
+        -In-depth processing
+        -Data management
+        -Device management
+        -Data aggregation
+        -Data filtering
+        -Device information discovery
+        -Access control
+        -Revision for feedback
+    This layer acts as the interface between the hardware and application layers; that’s why it’s called the middleware layer.
+
+    Once all the quality standards and requirements are met, the processed and analyzed data is ready to be sent back to the device.
+
+Application-	The application layer is the top layer in the IoT architecture. Its primary responsibility is to deliver the analyzed and processed data to the end user.
+    The user checks the data and may send commands to the devices or sensors. The process then restarts from the beginning.
+<b>Protocols</b>    
+Wi-Fi-	Wi-Fi is very commonly implemented in wireless local area networking and allows many types of devices to communicate with each other.
+    Wi-Fi Direct uses peer-to-peer communication without a set wireless access point.
+
+Bluetooth Low Energy (BLE)-	Bluetooth Low Energy, also known as Bluetooth Smart, is a wireless, personal area network protocol. It supports low-power, long-use IoT needs. It can be used in such sectors as healthcare, security, entertainment, and fitness.
+
+Zigbee-	Zigbee is one of the most common short-range IoT communication protocols. Zigbee has the following characteristics:
+    -Is open standard, which means anyone can develop and customize it as needed.
+    -Has a maximum distance of 60 feet between each hop.
+    -Allows an unlimited number of hops from a device to the hub.
+    -Operates at the 2.4 GHz frequency.
+
+Z-Wave-	Z-Wave is the other most common short range IoT communication protocol. Z-Wave has the following characteristics:
+    -Is closed standard, which means devices must meet specific requirements to be able to use it.
+    -Has a maximum distance of 250 feet between each hop.
+    -Can travel only four hops from a device to the hub.
+    -Operates at the 908.42 MHz frequency.
+<h3>11.4.11 Configure Smart Device Lab</h3>
+<h3>11.4.12 SCADA Embedded Systems</h3>
+    system that performs a single task - ex: gaming sytem, industrial systems. 
+            normally static or sealed
+            controlled by their own microprocessor and have their own memory 
+RTOS --> Real Time OS -> Deterministic manner of handling tasks 
+        ASIC - Application Specific Integration Circuit Chip = 
+                                                    - performs specific function
+                                                    - custom-designed
+                                                    - expensive to design
+                                                    - high-performance
+                                                    - low power consumption 
+        SoC - System on a Chip - everything on one board 
+                                                    - high performance with low power consumption  
+        FPGA - Field Programmable Gate Array - Physically similar to SoC or ASIC, but end user configurable
+
+ICS Industrial Control Systems - handle work flow and automation process for machines -> start with PLC Programmable Logic Controller 
+
+SCADA Supervisory Control and Data Acquisition - handles the workflow of multiple PLCs
+     - configuration changes handled using an HMI Human-Machine Interface  
+
+DCS Distributed Control System combines the SCADA and the HMI in an easier to use customized product      
+
+Modbus is the defacto communication standard 
+
+Operational Technology network = ICS network 
+    Informational Technology = standard server-client computing 
+
+OT vs IT networks
+
+embedded system vulnerable to attack
+
+OT Security -> admin training
+               run required protocols only
+               close unused ports 
+               patch and update system
+               perform regular audits and vulnerability assessments
+<h3>11.4.13 Embedded Systems (SCADA) Facts</h3>                           
+Embedded systems have the following characteristics:
+
+    -Are single-function devices.
+    -Are static or sealed systems. This means the hardware cannot be swapped out.
+    -Are reactive and make changes in real-time based on feedback from built-in sensors.
+    -Must be controlled by a microprocessor, have memory, and contain components to connect external devices such as USB ports.
+    -Use a real-time operating system (RTOS). This operating system handles processes in a deterministic manner. Key points regarding a RTOS are:
+        -Different algorithms are used to determine the task that should be performed next.
+        -Tasks are given individual priority by the program developer, so the RTOS knows the order to perform that tasks in.
+        -RTOS systems allow for tasks to be processed with almost no latency. This is vitally important for many embedded devices to work properly.
+
+    Application-specific integrated circuit (ASIC)-	 The application-specific integrated circuit chip is created to perform a single function. ASIC chips:
+        -Are typically custom designed.
+        -Are used by a company in a single product.
+        -Have an expensive and time-consuming development process.
+        -Offer high performance with low power consumption.
+    
+    System-on-chip (SoC)-	A system-on-chip incorporates all components on the board, including:
+        -Processor
+        -Memory
+        -Peripheral functions
+    
+    Field-programmable gate array (FPGA)-	A field-programmable gate array is physically setup like an ASIC or SoC, but the programming is configured by the end-user. ASIC and SoC chips have the instructions hard coded into them and cannot be changed.        
+
+    Programmable logic controller (PLC)-	A PLC is a specialized controller that can be programmed to perform specific tasks. Multiple PLCs can be combined and configured to work together to carry out complex tasks.
+
+    Supervisory control and data acquisition (SCADA)-	SCADA controllers can monitor and control PLC systems. They gather data and adjust the system based on the data acquired from sensors.
+
+    Human-machine interface (HMI)-	The HMI can be either a touch-screen control panel or software running on a computer system. The HMI allows the operator to make configuration changes in the system.
+
+    Distributed control system (DCS)-	A DCS is a customized all-in-one package that contains the needed PLCs, SCADA controller, and HMI. These are typically custom designed for specific needs.
+
+    Modbus- 	Modbus is a special network protocol that controller systems use to communicate with each other. Modbus originally ran through a serial interface but has evolved to work over Ethernet and TCP/IP.
+<h3>11.4.14 Quiz Facts</h3>
+-The forward lookup zone matches the hostname to the IP address.
+
+-Reservations are static IP addresses that are not dynamically assigned by the DHCP server. Reservations are assigned by the DHCP server using the device's MAC address. Whenever the device with the specified MAC address connects to the network, 
+  the DHCP server assigns the reserved static IP configuration to that device.
+
+-The intrusion prevention system (IPS) monitors all network traffic, looking for anything out of the ordinary. When malicious or suspicious packets are detected, the IPS blocks the packets and notifies the network security team so further action can be taken.
+
+-Unified Threat Management (UTM) appliance. A UTM combines multiple functions into one single device, including the firewall, IPS, content filtering, VPN support, and much more.
+
+-Hackers and privacy are two majors concerns for IoT users. Because IoT devices are closely connected, all a hacker has to do is exploit one vulnerability to manipulate all the data, rendering it unusable. Additionally, companies that make and distribute consumer
+ IoT devices could use those devices to obtain and sell users' personal data.
+
+-Zigbee and Z-Wave are two radio protocols that many IoT devices work with because they are designed for low-data rate, low-power applications. These protocols link all IoT devices to form a mesh network.
+
+-A smart thermostat learns from your habits and schedule, allows you to control the climate in your home remotely, shows you energy consumption in real time, and adjusts itself depending on ambient conditions.
+
+    A smart switch allows you to control hardwired lights, ceiling fans, fireplaces, small appliances, and garbage disposals.
+
+    A smart bulb can change colors, track motion, stream audio over Bluetooth, and double as a connected camera, but it's only smart when turned on.
+
+    A smart plug is an easy solution for making appliances such as lamps, coffee makers, and toasters smart.
+
+    A smart security camera uses an RF transmitter and may include such features as motion detection, scheduled recording, remote viewing, and automatic cloud storage.
+
+    A smart door lock uses a wireless protocol and a cryptographic key to execute the authorization process. A smart door can also monitor access and send alerts related to a device's status.
+
+    A smart speaker/digital assistant uses voice recognition software and activates through a Wake Word or Hot Word.
+
+-Two of the four IoT systems that work together for endpoint communication include the gateway system and data storage. The gateway system connects an IoT device to the cloud, while data storage is the system in the cloud that stores,
+  processes, and analyzes the data.
+
+-A DCS is a customized, all-in-one package that contains the needed PLCs, SCADA controller, and HMI. DCSs are typically custom-designed for specific needs.
+
+-Embedded devices are sealed systems, which means that they are typically unknown environments. This means that the security administrator will not always know which hardware is in the device.
+<h2>11.5 Wireless Networking</h2>
+Wireless channel-	A method that allows the frequency of the wireless network to be fine-tuned. Each channel is approximately 20 MHz wide.
+
+802.11	IEEE-  designation for all wireless networking standards.
+
+Multiple-input multiple-output (MIMO)-	An enhancement that allows multiple antennas to use the same radio frequency.
+
+Channel bonding-	A method that combines channels into one to increase bandwidth.
+
+Multi-user multiple-input multiple-output (MU-MIMO)-	An enhancement to MIMO that allows the antennae on the access point to divide streams between multiple devices.
+
+802.1x authentication- 	 Secure authentication method for wired and wireless networks.
+
+Open network-	Wireless network that requires no authentication.
+
+Captive portal-	 Authentication method that forces a user to agree to terms or pay a fee before accessing the wireless network.
+
+Pre-shared key (PSK)-	Wireless authentication method that uses a passphrase to authenticate users.
+
+Wi-Fi Protected Setup- 	 Wireless authentication method that allows for automatic connection between a device and the wireless access point.
+
+Wi-Fi Protected Access-	 Encryption protocol used on most wireless networks today. Versions 2 and 3 are the latest versions in use.
+
+Bluetooth-  	Wireless communication technology that allows two devices to connect to each other over a short distance.
+
+Radio Frequency Identification (RFID)-  	A communication method that uses radio waves to transmit data from small circuit boards called RFID tags to special scanners.
+
+Near Field Communication (NFC)- 	A communication method that allows two-way communication between two devices within a few centimeters of each other.
+<h3>11.5.1 Wireless Networking</h3>
+    radio-waves 
+
+Wireless Router - sends data through the air through radio waves -- unbounded 
+   2.4 GHz - wider but shorter wave - travel further with lower transfer rate
+   5 GHz - thinner but higher waves - travel less but better transfer
+   
+Wireless channel - has about 20MHz per channel -- 
+   2.4GHz - 11 channels in 2.4GHz
+       ch 1, 6, and 11 are non-overlapping
+    
+   5GHz - has more non-overlapping channels 
+        45 channels, 24 non-overlapping 
+        
+802.11 wireless standards
+
+    802.11a - 5GHz - 54 Mbps, max of 100ft
+    802.11b - 2.4GHz - 11 Mbps, 150ft 
+    802.11g - 2.4GHz - 54 Mbps, 150ft
+    802.11n - 2.4GHz or 5GHZ - 600 Mbps, 300ft
+    802.11ac Wi-Fi 5 - 5GHz - 2.6 Gbps - 300ft -- takes advantage of both MU-MIMO & Channel Bonding
+    802.11ax Wi-Fi 6 - 5GHz - 14 Gbps - 300ft --   
+ 
+MIMO Multiple Input / Multiple Output - adds additional transmit and recieve radios 
+   can have 4 transmit and 4 receive radios with 802.11n 
+   802.11n access points support both 2.4GHz and 5GHz
+
+MU-MIMO - Multi-user MIMO -> V-Forming 
+
+Channel Bonding -> combine 2 non-overlapping channels together to increase the speed (doubles speed)
+
+Long Range Wireless Network -- 
+    High End Wireless Access Point with antena - if it is a short distance 
+    can try to increase Access Point Power 
+    
+WiMax - operates at 3.65 GHz -- licensed spectrum
+<h3>11.5.2 Install Wireless Network Adapter</h3> 
+    install USB Wi-Fi adapter in this example. 
+
+        preloaded the drivers in the example -> 
+<h3>11.5.3 Wirelss Facts</h3>
+All speeds and distances are theoretical and will typically be achieved only in an optimal environment.
+
+    -Transmission speeds are affected by distance, obstructions (such as walls), and interference.
+    -Maximum signal distance depends on several factors, including obstructions, antenna strength, and interference. For example, the actual distance for communications in a typical environment (with one or two walls) is roughly half of the maximum.
+    -Because transmission speeds decrease with distance, either the maximum distance or the maximum speed can be achieved, but not both.
+
+Long-Range Wireless 
+
+    -If the locations are only a short distance apart, you can install a high-end wireless access point with special antennas. These networks still use the unlicensed frequencies and appropriate 802.11 standard.
+    -If the network locations are spread across a longer distance, special equipment is needed. These long-range networks also need special permission to use a licensed frequency range such as 900 MHz or 3.65 GHz.
+    -Regardless of the range, some wireless access points allow the power to be increased. Increasing the power allows the access point to transmit a longer distance, but can lead to overheating and instability.
+    -Always follow FCC guidance and requirements if increasing the power as this can cause interference with other wireless devices in the area.
+<h3>11.5.4 Wireless Security</h3>
+    to keep the network we safe we implement security steps.
+
+    Authentication - prove your identity 
+            Open Network - Public Free Wifi
+                    captive portal - redirected to agree to terms and conditions
+            PSK Pre-Shared Key - Passphrase
+            WPS Wi-Fi Protected Setup (WPS) - auto join using the WPS button
+                    some devices use NFC (near field communication) to share WPS
+            802.1x -> one of the most secure ways to connect -> enables virtual port
+                    supplicant = wireless client
+                    authenticator = NAS Network Access Server
+                    authentication server = RADIUS Server - Remote Authentication Dial-In Service 
+                        AAA protocol = authentication, authorization, accounting  
+
+    encrypt the wireless communication: 
+            WPA2-PSK - uses AES-CCMP a 128-bit key
+            WPA2-Enterprise - Four-Way Handshake: 1)access point - send clear text challange
+                                                  2)client - encrypt challange -> SNonce+MIC    
+                                                  3)access point - GTK + MIC 
+                                                  4)client - verifies and sends ACK
+            
+            WPA3 - addresses security -> SAE Simultaneous Authentication of Equals - cryptograhy method
+
+<b>Additional Security Measures </b>
+-Change default credentials             
+-Disable SSID Broadcast
+-MAC address filtering
+-Update Firmware
+-Enable and Configure Firewall
+<h3>11.5.5 Wireless Security Facts</h3>                      
+When using 802.1x authentication for wireless networks with RADIUS, keep in mind:
+    -A RADIUS server is required to centralize user account and authentication information. A centralized database for user authentication is required to allow wireless clients to roam between cells and authenticate using the same account information.
+    -A PKI is required for issuing certificates. At a minimum, the RADIUS server must have a server certificate. To support mutual authentication, each client must also have a certificate.
+    -The wireless access point is a RADIUS client.
+    -The wireless access point forwards the wireless device's credentials to the RADIUS server for authentication.
+    -A RADIUS federation is multiple RADIUS servers that communicate with each other after establishing a trust relationship. These servers may be on different networks and could span multiple organizations.
+<h3>11.5.6 Wireless Encryption and Authentication</h3>
+    properly secure the data across the wireless network
+
+Encryption Algorithms: 
+        WPA Wi-fi Protected Access -> most popular security protocol (WPA2 or WPA3 most used)
+        
+        TKIP Temporal Key Integrity Protocol -> encryption -- older, fixed problem with WEP  
+                                                    each packet gets encryption - Rivest Cipher 4
+        AES Advanced Encryption Standard -> encryption -- replaced TKIP -> 128 bits
+                                            keys up to 256 bits in length
+                                            -based on Rijndael algorithm
+                                            often paired with CCMP Counter Mode with Cipher Block Chaining Message Authentication
+
+Authentication Protocols: 
+Remote Authentication Dial-In Service (RADIUS) - port 1812 = authentication & authorization 
+                                                         port 1813 = accounting
+                                                         
+Terminal Access Controller Access-Control System (TACACS+) - Cisco - address RADIUS security concerns
+                                                        encrypts all packets
+                                                        port 49 - only uses 49
+
+AAA Protocols - Authentication = user's ID
+                Authorization = access allowed
+                Accounting = log what user does  
+
+Kerberos - MIT - used by Microsoft 3 part: Client: client login to Auth Server and Auth Server issues Session Key                           
+                                           Authentication Server: issues client TGT and Session Key (TGT = Ticket Granting Ticket) 
+                                           Trusted Key Distribution Center (KDC): client then sends the Session key and TGT (issued by Auth Server)
+                                                  and KDC [aka Ticket Granting Server] sends the client an Authentication Ticket for the session. 
+
+    Kerberos only provides Authentication [no authorization or accounting]
+        often run with RADIUS or another Protocol for security 
+<h3>11.5.8 Configure a Wireless Connection</h3>
+    Demo for -> find SSID -> type in passphrase
+        verify you are connected
+    view wireless profiles -
+       start -> settings -> network & internet -> wi-fi -> manage known network
+                shows profiles of networks you have connected to
+                  -> set as default 
+                  -> let the system know you are on a metered connection 
+        manually add a hidden network by typing in the name
+        can 'forget' wi-fi that you want to remove 
+        
+mobile hotspot -> make computer a hotspot 
+        
+in Command Prompt: $ netsh wlan show wirelesscapabilities
+<h3>11.5.13 Infrared, Bluetooth, and NFC</h3>
+    Bluetooth - PAN Personal Area Network - pairs between 2 items
+            uses a server / client relatoionship   
+            use ObEx protocol 
+            bluetooth is backwards compatible
+    
+    RFID Radio Frequency ID - 
+            active RFID tag - toll pass transponder 
+            passive RFID tag - access cards 
+        can scan and clone the RFID chip
+
+    NFC - Near Field Communication - built on RFID - touch pay 
+                                    bump to share info on old iphone device
+<h3>11.5.14 Configure Bluetooth Connections</h3>
+        configure bluetooth on pc and android phone 
+    in device manager -> can go into bluetooth device properties
+
+    open settings -> start -> setting -> bluetooth and devices 
+      or right click on bluetooth icon and choose properties
+
+      add device - scanning for devices 
+         sometime need a pairing code
+      
+    transfer files with bluetooth connection - 
+      on pc send file to phone -> click on bluetooth icon on pc and choose 'send a file'
+    in android phone you can share to 'bluetooth' device.       
+<h3>11.5.15 Infrared, Bluetooth, and NFC Facts</h3>                                    
+    <b>Bluetooth Version</b>
+    -1.0-	Operates at a range of 10 meters and speeds up to 1 Mbps.
+    -2.0-	Operates at a range up to 30 meters and speeds up to 1 Mbps. A special mode called Enhanced Data Rate (EDR) enables transfer rates up to 3 Mbps.
+    -3.0-	Operates at a range up to 30 meters and speeds up to 1 Mbps. A special mode known as High Speed (HS) allows the Bluetooth device to use a nearby 802.11 link to achieve speeds up to 24 Mbps.
+    -4.0-	Operates at a range up to 60 meters and speeds up to 1 Mbps (24 Mbps when using High Speed mode).
+        --Version 4.0 introduced the Bluetooth Low Energy (BLE) standard.
+            -BLE reduces the power consumption of Bluetooth devices.
+    -5.0-	Operates at a range up to 240 meters and speeds up to 2 Mbps (48 Mbps when using High Speed mode).
+        --Bluetooth 5 improves the performance of BLE devices.
+            -It also introduced the dual audio feature which allows audio to play simultaneously on two connected devices.
+
+    <b>RFID</b> uses radio waves to transmit data from small circuit boards to special scanners 
+    -Active RFID tags have on-board batteries and can send signals over a long distance. Toll passes in vehicles use active RFID.
+    -Passive RFID are not powered and rely on the energy transferred by the scanner to transmit data. ID badges, credit cards, and similar devices use these tags. 
+
+    <b>NFC</b>
+    NFC is a newer technology that is built on RFID. NFC allows two-way communication between two devices that are within 2 inches of each other.
+        -NFC operates in the 13.56 MHz frequency. It has a maximum transmission speed of 424 Kbps.
+        -Special chips called NFC chips can send, receive, and store data.
+        -Devices using NFC operate in one of three modes:
+            -Reader/writer mode is used to read information stored on an NFC chip.
+            -Peer-to-Peer mode enables two devices to communicate and exchange information.
+            -Card Emulation mode enables the device to function as a smart card to perform contactless payment or ticketing. This mode is typically used by smart phones.
+        -Data transmissions can be secured by using encryption algorithms.
+<h3>11.5.16 Quiz Facts</h3>
+- Remote Authentication Dial-In Service (RADIUS):
+
+    -Sends a user's credentials over UDP.
+    -Only encrypts the password.
+
+- Terminal Access Controller Access-Control System (TACACS+):
+    -Sends a user's credentials over TCP.
+
+Kerberos:
+    -Is a key component of Windows Active Directory.
+    -Provides a trusted Key Distribution Center (KDC).
+
+-Infrared wireless transmissions work best for devices within 1 meter, but can operate up to 2 meters in areas with a few obstacles in between.
+
+- Bluetooth transmission distance depends on the device class. The following rules apply:
+        -Class 3 devices transmit up to 1 meter.
+        -Class 2 devices transmit up to 10 meters.
+        -Class 1 devices transmit up to 100 meters.
+
+-NFC allows two-way communication between two devices, but they must be within a few centimeters of each other.    
+
+-A Bluetooth connection automatically detects Bluetooth-enabled devices and creates a wireless PAN between them. Bluetooth can be used for both voice and data signals, 
+   and it also provides 128-bit encryption to protect sensitive information in transit.
+ 
+-Near Field Communication, or NFC, uses the 13.56 MHz frequency and has a very short range. In order for devices to communicate, they have to be within two inches of 
+   each other. NFC chips are being used for applications such as passports and credit cards to contain all the information about the passport holder or the credit card 
+   account. NFC chips use encryption algorithms to secure the connection, but constantly emit a signal and use a much slower transmission speed than other wireless technologies.   
+
+-Near Field Communication (NFC) enables two electronic devices, one of which is typically a mobile device such as a smartphone, to establish communication within 10 cm (3.9 in) of each other. 
+     A popular NFC application is mobile proximity payments.   
+    
+-Active RFID tags have on-board batteries and can send signals over a long distance. Toll passes in vehicles use active RFID.
+
+-Passive RFID tags are not powered and rely on the energy transferred by the scanner to transmit data. 
+   These tags are seen in ID badges, credit cards, and other similar devices.  
+     
+
+<h2>11.7 Networking Hardware</h2>
+Wireless access point (WAP)-	A networking device that provides connection to a wireless network.
+
+Router- 	A networking device that connects two networks together.
+
+Hub-	A networking device that connects internal hosts using Ethernet cables. When data comes in, the hub forwards it to all connected devices.
+
+Switch- 	A networking device that connects internal hosts using Ethernet cables. When data comes in, the switch forwards it to the intended recipient.
+
+Patch panel-	A special panel where Ethernet cables are terminated.
+
+Virtual LAN (VLAN)- 	A virtual network that is configured on a network switch.
+
+Power over Ethernet-	Technology that can provide power to devices over an Ethernet cable.
+
+Software-defined networking-	A networking controller that allows the network administrator to manage network devices remotely.
+
+Symmetric-	 Internet connections that have the same upload and download speeds.
+
+Asymmetric- 	Internet connections that have different upload and download speeds.
+
+Cable internet- 	An internet connection that uses the existing cable TV infrastructure to provide access to the internet.
+
+Digital subscriber line (DSL)-  	An internet connection that provides high-speed digital data transmission over existing telephone lines.
+
+Fiber internet-	 Internet that uses fiber optic cables to provide access to the internet.
+
+Satellite internet- 	A network that uses radio signals sent and received from a satellite.
+
+Cellular internet- 	A network that uses a cellular phone infrastructure for internet access.
+
+Wireless internet service provider (WISP)-   Networks that use antennae pointed at a large antenna on land to provide access to the internet.
+<h3>11.7.1 Network Infrastructure</h3>
+    
     
 
 
@@ -269,48 +1225,8 @@ Anycast address-	A unicast address that is assigned to more than one interface, 
 
 
 
-    <h2>11.4 Services Provided by Network Devices</h2>
-    <h3>11.4.1</h3>
-    
-
-
-
-
-
-
-
-
-
-    <h2>11.5 Wireless Networking</h2>
-    <h3>11.5.1</h3>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-    <h2>11.7 Networking Hardware</h2>
-    <h3>11.7.1</h3>
-    
-
-
-
-
-
-
-
-
-
-
-    <h2>11.9 Network Troubleshooting</h2>
-    <h3>11.9.1</h3>
+<h2>11.9 Network Troubleshooting</h2>
+<h3>11.9.1</h3>
 
 
 

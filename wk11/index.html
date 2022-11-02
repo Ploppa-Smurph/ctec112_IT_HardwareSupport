@@ -7,7 +7,8 @@
     <title>CTEC-112 wk11 ch14: Firewall and Proxy</title>
 </head>
 <body>
-<h1>CTEC-112 wk11 ch14: Firewall and Proxy</h1>    
+<h1>CTEC-112 wk11 ch14: Firewall and Proxy</h1>
+<pre>    
 <h2>14.8 Firewall</h2>    
 <h3>14.8.7 Quiz Facts</h3>
 - ACLs (access control lists) are sets of rules used by firewalls. They specify which types of network traffic are allowed through the firewall. Any traffic that does not match the rules are blocked.
@@ -36,5 +37,51 @@
     * Anti-spam is designed to detect and block certain types of email.
     * A VPN encrypts traffic over a secure network. However, a VPN does not block traffic.   
 <h2>14.9 Proxy</h2>
+<h3>14.9.1 Proxy Settings</h3>
+"To act on behalf of another" - 
+NAT - Network Address Translation - private addressess stay private
+<h3>14.9.2 Configure Proxy</h3>
+Squid Proxy - for Cache Proxy 
+Privoxy - for Privacy
+
+this lab uses Squid Proxy to setup a cache proxy
+start -> settings -> network and internet -> configure manual proxy setup
+<h3>14.9.3 Proxy Facts</h3> 
+Caching - 	Caching stores frequently accessed data on the local proxy server. Users can load cached data (such as a web page) much faster because the user's request never leaves the network.
+Security - 	A proxy server can allow multiple devices to access the internet as a singular device on the internet. The proxy server uses Network Address Translation (NAT) to give all users the same public IP address. This makes it harder for a hacker to access a specific device.
+Sharing internet connections -  A proxy server can also allow all devices to be funneled through one connection controlling the flow of network traffic. This is also a good solution for wireless device connections over Wi-Fi. 
+Key points for forward and reverse proxies include:
+    The main difference between a forward and a reverse proxy is its placement.
+        - A forward proxy is placed between the network and the internet or other outside network.
+        - Reverse proxy servers are placed in the network between servers and client machines to monitor traffic between them.
+    - The forward proxy manages traffic leaving the network and traffic entering the network from the outside.
+    - The reverse proxy manages internal traffic between devices inside the network.
+    - The same roles and features that apply to the forward proxy server, apply to the reverse proxy server.
+<h3>14.9.4 Use Server Proxy Lab</h3>
+<h3>14.9.5 Proxy Quiz Facts</h3>
+- Caching allows frequently accessed data to be stored on the local proxy server so that a user's request never has to leave the network for retrieval.
+
+- To configure the proxy server's IP address, go to Control Panel > Network and Internet > Internet Options. Click the Connections tab and then select LAN settings. In the dialog displayed, you can enable a proxy server for the LAN and then enter the proxy server's IP address and port number.
+
+- use a proxy server to control internet access based on user, time of day, and websites visited. You would configure these rules on the proxy server, and all internet access requests would be routed through the proxy server using these rules.
+
+- A forward proxy server manages traffic leaving and entering your network from the outside.
+    * A reverse proxy server is placed between the servers and client machines internally to monitor traffic between them.
+
+- you should identify the proxy server name and port number in Internet Options. Windows automatically detects and uses a proxy server if one is on the network. If the proxy server is not detected, you should manually configure the proxy settings.
+
+- One function of a proxy server is to intercept requests from a client browser and either forward them on to the internet or deny access to that request.
+
+- A proxy, or proxy server, stands between client computers and web servers. You can use a proxy server to prevent access to specific websites or to cache (save) frequently used web pages.
+
+    * When a proxy receives a request from the client, the proxy checks to verify that the client is allowed access to the website. If they are, the proxy then checks its cache to see if the requested page is there. If the page is already cached, the proxy server fulfills the request by displaying 
+     the requested page from the cache rather than retrieving it from the internet. Receiving a web page from a local proxy server is much faster than downloading the page from the internet.
+
+- A proxy server can block internet access based on website or URL. Many schools and public networks use proxy servers to prevent access to websites with objectionable content.
+
+- A reverse proxy server is placed between the servers and client machines internally to monitor traffic between them.
+
+- A VPN allows users to connect to the internet anonymously. All the data is encrypted, and not even the ISP can see the contents of the traffic.
+</pre>
 </body>
 </html>
